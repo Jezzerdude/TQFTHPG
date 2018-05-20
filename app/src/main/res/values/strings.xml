@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">TQFTHPG</string>
+
+    <string name="main_title">The Quest for the Holy Pint Glass!</string>
+    <string name="noOfPs">Select the number pf players to play:</string>
+    <string name="Difficulty">Select the difficulty level:</string>
+    <string name="start">Start game!</string>
+    <string name="instructions">Instructions?!?</string>
+    <string name="response">*Please remember to drink responsibly.</string>
+    <string name="ins1">Welcome to ...</string>
+    <string name="ins2">... Continued ...</string>
+    <string name="ins3">... And finally ...</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

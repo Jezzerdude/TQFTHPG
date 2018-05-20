@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".DifficultyScreen.DiffFragment"
+    android:background="@color/colorMain">
+
+    <ImageView
+        android:id="@+id/banner"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:rotation="90"
+        app:srcCompat="@drawable/arrow"/>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/main_title"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="30dp"/>
+
+    <TextView
+        android:id="@+id/noOfPlayers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/noOfPs"
+        android:layout_marginBottom="40dp"
+        android:layout_below="@id/title"/>
+
+    <TextView
+        android:id="@+id/playerNo"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="Test"
+        android:layout_below="@id/noOfPlayers"
+        android:layout_centerHorizontal="true"/>
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_toRightOf="@id/playerNo"
+        android:layout_below="@id/noOfPlayers"
+        android:rotation="180"
+        app:srcCompat="@drawable/arrow"
+        android:layout_toEndOf="@id/playerNo" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_toLeftOf="@id/playerNo"
+        android:layout_below="@id/noOfPlayers"
+        app:srcCompat="@drawable/arrow"
+        android:layout_toStartOf="@id/playerNo" />
+
+    <TextView
+        android:id="@+id/difText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Difficulty"
+        android:layout_below="@id/playerNo"
+        android:layout_marginBottom="40dp"
+        android:layout_marginTop="50dp"/>
+
+    <TextView
+        android:id="@+id/difficulty"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="Test2"
+        android:layout_below="@id/difText"
+        android:layout_centerHorizontal="true"/>
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_toRightOf="@id/difficulty"
+        android:layout_below="@id/difText"
+        android:rotation="180"
+        app:srcCompat="@drawable/arrow"
+        android:layout_toEndOf="@id/difficulty" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_toLeftOf="@id/difficulty"
+        android:layout_below="@id/difText"
+        app:srcCompat="@drawable/arrow"
+        android:layout_toStartOf="@id/difficulty" />
+
+    <Button
+        android:id="@+id/startButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/start"
+        android:layout_below="@id/difficulty"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginStart="55dp" />
+
+    <Button
+        android:id="@+id/instButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/instructions"
+        android:layout_below="@id/difficulty"
+        android:layout_toRightOf="@id/startButton"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toEndOf="@id/startButton"
+        android:layout_marginStart="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/response"
+        android:layout_below="@id/startButton"
+        android:layout_marginTop="20dp"/>
+
+
+
+</RelativeLayout>
