@@ -3,10 +3,10 @@ package com.example.jeremy.tqfthpg.CharacterScreen;
 import android.app.Fragment;
 
 public interface CharacterInterface {
-    public interface viewInterface{
+    interface viewInterface{
 
     }
-    public interface presenterInterface{
+    interface presenterInterface{
 
         CharacterFragment getFragment();
     }

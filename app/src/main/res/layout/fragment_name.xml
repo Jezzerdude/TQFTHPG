@@ -1,14 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NameScreen.NameFragment">
+    tools:context=".NameScreen.NameFragment"
+    android:background="@color/colorMain">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/Names"
+        android:layout_marginBottom="20dp"/>
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/p1text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/p1"
+        android:layout_below="@id/title"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:id="@+id/p2text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/p2"
+        android:layout_below="@id/p1text"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:id="@+id/p3text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/p3"
+        android:layout_below="@id/p2text"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:id="@+id/p4text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/p4"
+        android:layout_below="@id/p3text"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:id="@+id/p5text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/p5"
+        android:layout_below="@id/p4text"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:id="@+id/p6text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/p6"
+        android:layout_below="@id/p5text"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:id="@+id/p7text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/p7"
+        android:layout_below="@id/p6text"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:id="@+id/p8text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/p8"
+        android:layout_below="@id/p7text"
+        android:layout_marginBottom="10dp"/>
+
+    <EditText
+        android:id="@+id/p1Name"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/p1text"
+        android:layout_marginTop="-10dp"
+        android:layout_toRightOf="@+id/p1text"
+        android:layout_toEndOf="@+id/p1text"
+        android:hint="First player's name"
+        android:padding="5dp"
+        android:singleLine="true"/>
+
+    <EditText
+        android:id="@+id/p2Name"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/p1text"
+        android:layout_marginTop="-10dp"
+        android:layout_toRightOf="@+id/p1text"
+        android:layout_toEndOf="@+id/p1text"
+        android:hint="Second player's name"
+        android:padding="5dp"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/p3Name"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/p2text"
+        android:layout_marginTop="-10dp"
+        android:layout_toRightOf="@+id/p2text"
+        android:layout_toEndOf="@+id/p2text"
+        android:hint="Third player's name"
+        android:padding="5dp"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/p4Name"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/p3text"
+        android:layout_marginTop="-10dp"
+        android:layout_toRightOf="@+id/p3text"
+        android:layout_toEndOf="@+id/p3text"
+        android:hint="Forth player's name"
+        android:padding="5dp"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/p5Name"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/p4text"
+        android:layout_marginTop="-10dp"
+        android:layout_toRightOf="@+id/p4text"
+        android:layout_toEndOf="@+id/p4text"
+        android:hint="Fifth player's name"
+        android:padding="5dp"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/p6Name"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/p5text"
+        android:layout_marginTop="-10dp"
+        android:layout_toRightOf="@+id/p5text"
+        android:layout_toEndOf="@+id/p5text"
+        android:hint="Sixth player's name"
+        android:padding="5dp"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/p7Name"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/p6text"
+        android:layout_marginTop="-10dp"
+        android:layout_toRightOf="@+id/p6text"
+        android:layout_toEndOf="@+id/p6text"
+        android:hint="Seventh player's name"
+        android:padding="5dp"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/p8Name"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/p7text"
+        android:layout_marginTop="-10dp"
+        android:layout_toRightOf="@+id/p7text"
+        android:layout_toEndOf="@+id/p7text"
+        android:hint="Eighth player's name"
+        android:padding="5dp"
+        android:singleLine="true" />
+
+    <Button
+        android:id="@+id/genChars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/charGenerate"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/p8text"
+        android:layout_marginTop="30dp"/>
+
+</RelativeLayout>

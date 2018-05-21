@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.jeremy.tqfthpg.CharacterScreen.CharacterActivity;
 import com.example.jeremy.tqfthpg.Instructions.InstructionActivity;
+import com.example.jeremy.tqfthpg.NameScreen.NameActivity;
 import com.example.jeremy.tqfthpg.R;
 
 import javax.inject.Inject;
@@ -134,7 +135,7 @@ public class DiffFragment extends Fragment implements DiffInterface.viewInterfac
 
         void OnButtonPressed() {
             if (mListener != null) {
-                Intent intent = new Intent(getView().getContext(), CharacterActivity.class);
+                Intent intent = new Intent(getView().getContext(), NameActivity.class);
                 startActivity(intent);
             }
         }

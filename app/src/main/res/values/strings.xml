@@ -10,6 +10,16 @@
     <string name="ins1">Welcome to ...</string>
     <string name="ins2">... Continued ...</string>
     <string name="ins3">... And finally ...</string>
+    <string name="Names">Character Names!</string>
+    <string name="p1">Player 1: </string>
+    <string name="p2">Player 2: </string>
+    <string name="p3">Player 3: </string>
+    <string name="p4">Player 4: </string>
+    <string name="p5">Player 5: </string>
+    <string name="p6">Player 6: </string>
+    <string name="p7">Player 7: </string>
+    <string name="p8">Player 8: </string>
+    <string name="charGenerate">Generate Characters!</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

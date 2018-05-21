@@ -1,78 +1,105 @@
 package com.example.jeremy.tqfthpg.NameScreen;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
+import com.example.jeremy.tqfthpg.CharacterScreen.CharacterActivity;
 import com.example.jeremy.tqfthpg.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link NameFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link NameFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class NameFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class NameFragment extends Fragment {
+
+    @BindView(R.id.p1text)
+    TextView p1text;
+    @BindView(R.id.p1Name)
+    TextView p1Name;
+    @BindView(R.id.p2text)
+    TextView p2text;
+    @BindView(R.id.p2Name)
+    TextView p2Name;
+    @BindView(R.id.p3text)
+    TextView p3text;
+    @BindView(R.id.p3Name)
+    TextView p3Name;
+    @BindView(R.id.p4text)
+    TextView p4text;
+    @BindView(R.id.p4Name)
+    TextView p4Name;
+    @BindView(R.id.p5text)
+    TextView p5text;
+    @BindView(R.id.p5Name)
+    TextView p5Name;
+    @BindView(R.id.p6text)
+    TextView p6text;
+    @BindView(R.id.p6Name)
+    TextView p6Name;
+    @BindView(R.id.p7text)
+    TextView p7text;
+    @BindView(R.id.p7Name)
+    TextView p7Name;
+    @BindView(R.id.p8text)
+    TextView p8text;
+    @BindView(R.id.p8Name)
+    TextView p8Name;
+    @BindView(R.id.genChars)
+    Button genChars;
 
     private OnFragmentInteractionListener mListener;
+    SharedPreferences app_pref;
 
     public NameFragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment NameFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static NameFragment newInstance(String param1, String param2) {
-        NameFragment fragment = new NameFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_name, container, false);
+        View view = inflater.inflate(R.layout.fragment_name, container, false);
+        ButterKnife.bind(this, view);
+        app_pref = PreferenceManager.getDefaultSharedPreferences(view.getContext());
+        String PlayerNo = app_pref.getString("PlayerNo", "Null");
+        hideUneededNames(Integer.parseInt(PlayerNo));
+        genChars.setOnClickListener(onClickListener);
+
+        return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+    private void hideUneededNames(int NoOfPlayers) {
+        if(NoOfPlayers<=7){
+            p8text.setVisibility(View.GONE);
+            p8Name.setVisibility(View.GONE);
         }
+        if(NoOfPlayers<=6){
+            p7text.setVisibility(View.GONE);
+            p7Name.setVisibility(View.GONE);
+        }
+        if(NoOfPlayers<=5){
+            p6text.setVisibility(View.GONE);
+            p6Name.setVisibility(View.GONE);
+        }
+        if(NoOfPlayers<=4){
+            p5text.setVisibility(View.GONE);
+            p5Name.setVisibility(View.GONE);
+        }
+        if(NoOfPlayers<=3){
+            p4text.setVisibility(View.GONE);
+            p4Name.setVisibility(View.GONE);
+        }
+
     }
 
     @Override
@@ -92,18 +119,77 @@ public class NameFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.genChars:
+                    OnButtonPressed();
+                    break;
+            }
+        }
+
+        void OnButtonPressed() {
+            String PlayerNo = app_pref.getString("PlayerNo", "Null");
+            if (mListener != null) {
+                if(ableToContinue(Integer.parseInt(PlayerNo))){
+                    Intent intent = new Intent(getView().getContext(), CharacterActivity.class);
+                    startActivity(intent);
+                }
+            }
+        }
+    };
+
+    private boolean ableToContinue(int NoOfPlayers) {
+        int temp1 = 0;
+        if(NoOfPlayers>=8){
+            if((!p8Name.getText().toString().equals(""))){
+                temp1++;
+            }
+        }
+        if(NoOfPlayers>=7){
+            if((!p7Name.getText().toString().equals(""))){
+                temp1++;
+            }
+        }
+        if(NoOfPlayers>=6){
+            if((!p6Name.getText().toString().equals(""))){
+                temp1++;
+            }
+        }
+        if(NoOfPlayers>=5){
+            if((!p5Name.getText().toString().equals(""))){
+                temp1++;
+            }
+        }
+        if(NoOfPlayers>=4){
+            if((!p4Name.getText().toString().equals(""))){
+                temp1++;
+            }
+        }
+        if(NoOfPlayers>=3){
+            if((!p3Name.getText().toString().equals(""))){
+                temp1++;
+            }
+        }
+        if(NoOfPlayers>=2){
+            if((!p2Name.getText().toString().equals(""))){
+                temp1++;
+            }
+        }
+        if(NoOfPlayers>=1){
+            if((!p1Name.getText().toString().equals(""))){
+                temp1++;
+            }
+        }
+        if(temp1 == NoOfPlayers){
+            return true;
+        }
+        return false;
     }
 }
