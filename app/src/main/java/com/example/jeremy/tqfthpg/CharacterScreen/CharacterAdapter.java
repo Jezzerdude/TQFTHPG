@@ -1,7 +1,6 @@
 package com.example.jeremy.tqfthpg.CharacterScreen;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -10,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.jeremy.tqfthpg.CharacterScreen.Model.Character;
+import com.example.jeremy.tqfthpg.CharacterScreen.Model.PCharacter;
 import com.example.jeremy.tqfthpg.R;
 
 import java.util.List;
@@ -19,11 +18,11 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
 
     private static final String TAG = "CharacterAdapter";
     //declare main list:
-    private List<Character> charlist;
+    private List<PCharacter> charlist;
     private Context mcontext;
 
 
-    public CharacterAdapter(List<Character> songlist, Context context) {
+    public CharacterAdapter(List<PCharacter> songlist, Context context) {
         this.charlist = songlist;
         this.mcontext = context;
     }
@@ -62,7 +61,7 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
     @Override
     public void onBindViewHolder(@NonNull CharViewHolder holder, int position) {
         Log.d(TAG, "onBindViewHolder: called");
-        Character currentchar = charlist.get(position);
+        PCharacter currentchar = charlist.get(position);
 
         holder.Name.setText(currentchar.getFullname());
         holder.Race.setText(currentchar.getRace());

@@ -1,6 +1,6 @@
 package com.example.jeremy.tqfthpg.CharacterScreen.Model;
 
-public class Character {
+public class PCharacter {
     String Race;
     String Charclass;
     String Firstname;
@@ -9,10 +9,10 @@ public class Character {
     String Weakness;
     String Description;
 
-    public Character() {
+    public PCharacter() {
     }
 
-    public Character(String race, String charclass, String firstname, String lastname, String fullname, String weakness, String description) {
+    public PCharacter(String race, String charclass, String firstname, String lastname, String fullname, String weakness, String description) {
         Race = race;
         Charclass = charclass;
         Firstname = firstname;

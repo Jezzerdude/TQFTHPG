@@ -59,6 +59,7 @@ public class NameFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     SharedPreferences app_pref;
+    SharedPreferences.Editor editor;
 
     public NameFragment() {
         // Required empty public constructor
@@ -138,6 +139,26 @@ public class NameFragment extends Fragment {
             String PlayerNo = app_pref.getString("PlayerNo", "Null");
             if (mListener != null) {
                 if(ableToContinue(Integer.parseInt(PlayerNo))){
+                    editor = app_pref.edit();
+                    editor.putString("Name1", p1Name.getText().toString()).apply();
+                    editor.putString("Name2", p2Name.getText().toString()).apply();
+                    editor.putString("Name3", p3Name.getText().toString()).apply();
+                    if(Integer.parseInt(PlayerNo)>3){
+                        editor.putString("Name4", p4Name.getText().toString()).apply();
+                    }
+                    if(Integer.parseInt(PlayerNo)>4){
+                        editor.putString("Name5", p5Name.getText().toString()).apply();
+                    }
+                    if(Integer.parseInt(PlayerNo)>5){
+                        editor.putString("Name6", p6Name.getText().toString()).apply();
+                    }
+                    if(Integer.parseInt(PlayerNo)>6){
+                        editor.putString("Name7", p7Name.getText().toString()).apply();
+                    }
+                    if(Integer.parseInt(PlayerNo)>7){
+                        editor.putString("Name8", p8Name.getText().toString()).apply();
+                    }
+
                     Intent intent = new Intent(getView().getContext(), CharacterActivity.class);
                     startActivity(intent);
                 }

@@ -8,18 +8,18 @@
 
 
     <TextView
-        android:id="@+id/GameTitle"
+        android:id="@+id/CharTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="This is the main Game!"
+        android:text="Characters"
         android:layout_centerHorizontal="true"/>
 
     <Button
         android:id="@+id/newEventButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Event"
+        android:text="@string/start"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/GameTitle"/>
+        android:layout_below="@id/CharTitle" />
 
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.example.jeremy.tqfthpg;
 
+import com.example.jeremy.tqfthpg.CharacterScreen.CharacterFragment;
 import com.example.jeremy.tqfthpg.CharacterScreen.CharacterInterface;
 import com.example.jeremy.tqfthpg.CharacterScreen.CharacterPresenter;
 import com.example.jeremy.tqfthpg.DifficultyScreen.DiffFragment;
@@ -37,5 +38,11 @@ public class AppInjector {
     @Singleton
     DiffInterface.viewInterface provideMainFragment(){
         return new DiffFragment();
+    }
+
+    @Provides
+    @Singleton
+    CharacterInterface.viewInterface provideCharFragment(){
+        return new CharacterFragment();
     }
 }
