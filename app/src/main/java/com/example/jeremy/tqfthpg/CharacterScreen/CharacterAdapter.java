@@ -22,8 +22,8 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
     private Context mcontext;
 
 
-    public CharacterAdapter(List<PCharacter> songlist, Context context) {
-        this.charlist = songlist;
+    public CharacterAdapter(List<PCharacter> charlist, Context context) {
+        this.charlist = charlist;
         this.mcontext = context;
     }
 

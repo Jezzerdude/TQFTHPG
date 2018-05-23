@@ -1,32 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/nameDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name: "/>
 
     <TextView
         android:id="@+id/text_name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/nameDesc"
+        android:layout_toEndOf="@id/nameDesc" />
+
+    <TextView
+        android:id="@+id/raceDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Race: "
+        android:layout_below="@id/nameDesc"/>
 
     <TextView
         android:id="@+id/text_race"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nameDesc"
+        android:layout_toRightOf="@id/raceDesc"
+        android:layout_toEndOf="@id/raceDesc" />
+
+    <TextView
+        android:id="@+id/classDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Class: "
+        android:layout_below="@id/raceDesc"/>
 
     <TextView
         android:id="@+id/text_class"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/raceDesc"
+        android:layout_toRightOf="@id/classDesc"
+        android:layout_toEndOf="@id/classDesc" />
+
+    <TextView
+        android:id="@+id/weaknessDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Weakness: "
+        android:layout_below="@id/classDesc"/>
 
     <TextView
         android:id="@+id/text_weakness"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/classDesc"
+        android:layout_toRightOf="@id/weaknessDesc"
+        android:layout_toEndOf="@id/weaknessDesc" />
 
     <TextView
         android:id="@+id/text_description"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/weaknessDesc"/>
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/seperator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="------------------------------------------------------------------------------"
+        android:layout_below="@id/text_description"/>
+
+</RelativeLayout>

@@ -1,13 +1,13 @@
 package com.example.jeremy.tqfthpg.CharacterScreen.Model;
 
 public class PCharacter {
-    String Race;
-    String Charclass;
-    String Firstname;
-    String Lastname;
-    String Fullname;
-    String Weakness;
-    String Description;
+    private String Race;
+    private String Charclass;
+    private String Firstname;
+    private String Lastname;
+    private String Fullname;
+    private String Weakness;
+    private String Description;
 
     public PCharacter() {
     }

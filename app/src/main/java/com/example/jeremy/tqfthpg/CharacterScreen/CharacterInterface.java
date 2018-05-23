@@ -14,5 +14,8 @@ public interface CharacterInterface {
         PCharacter[] genChars(int NoOfChars, String[] FirstNames);
         String genSurName(String race);
         String genRace();
+        String genClass();
+        String genWeakness();
+        String genDescription(String race, String PClass,String Name,String Weakness);
     }
 }

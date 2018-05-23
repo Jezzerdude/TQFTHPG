@@ -2,10 +2,14 @@ package com.example.jeremy.tqfthpg.CharacterScreen;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Movie;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.preference.PreferenceManager;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +20,9 @@ import com.example.jeremy.tqfthpg.AppInitiliser;
 import com.example.jeremy.tqfthpg.CharacterScreen.Model.PCharacter;
 import com.example.jeremy.tqfthpg.NameScreen.NameInterface;
 import com.example.jeremy.tqfthpg.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -30,6 +37,10 @@ public class CharacterFragment extends Fragment implements CharacterInterface.vi
 
     SharedPreferences app_pref;
 
+    RecyclerView recyclerView;
+    CharacterAdapter characterAdapter;
+    private List<PCharacter> charlist;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -39,19 +50,41 @@ public class CharacterFragment extends Fragment implements CharacterInterface.vi
         app_pref = PreferenceManager.getDefaultSharedPreferences(view.getContext());
         String PlayerNo = app_pref.getString("PlayerNo", "Null");
         String Difficulty = app_pref.getString("Difficulty", "Null");
-        Toast.makeText(view.getContext(), "Players "+PlayerNo, Toast.LENGTH_SHORT).show();
-        Toast.makeText(view.getContext(), "Dif "+Difficulty, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(view.getContext(), "Players "+PlayerNo, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(view.getContext(), "Dif "+Difficulty, Toast.LENGTH_SHORT).show();
 
         String[] firstnames = new String[Integer.parseInt(PlayerNo)];
         for(int i =0;i<Integer.parseInt(PlayerNo);i++){
             firstnames[i]= app_pref.getString("Name"+(i+1), "Null");
         }
 
-        PCharacter[] newTemp = presenter.genChars(Integer.parseInt(PlayerNo), firstnames);
+        PCharacter[] PlayerChars = presenter.genChars(Integer.parseInt(PlayerNo), firstnames);
 
-        for(int i =0; i<newTemp.length;i++){
-            Log.e("tag","Lastname: "+newTemp[i].getFullname()+", Race: "+newTemp[i].getRace());
+        //------------------------------------------------------------------------------------------
+        //recyclerview
+        charlist = new ArrayList<PCharacter>();
+        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
+        characterAdapter = new CharacterAdapter(charlist,view.getContext());
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(characterAdapter);
+
+        for(int i =0;i<Integer.parseInt(PlayerNo);i++){
+            charlist.add(PlayerChars[i]);
         }
+        characterAdapter.notifyDataSetChanged();
+
+        //------------------------------------------------------------------------------------------
+
+
+
+        /*for(int i =0; i<newTemp.length;i++){
+            //Log.e("tag","Lastname: "+newTemp[i].getFullname()+", Race: "+newTemp[i].getRace()+", Class: "+newTemp[i].getCharclass()
+            //+", Weakness: "+newTemp[i].getWeakness());
+            Log.e("tag",newTemp[i].getDescription());
+        }*/
 
         return view;
     }
