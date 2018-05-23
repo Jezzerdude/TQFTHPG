@@ -213,4 +213,14 @@ public class CharacterPresenter implements CharacterInterface.presenterInterface
             return genDescription(Race,PClass,Name,Weakness);
         }
     }
+
+    @Override
+    public void SaveCharacters(PCharacter[] chars) {
+
+    }
+
+    @Override
+    public void DeleteCharacters() {
+
+    }
 }

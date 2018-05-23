@@ -1,12 +1,14 @@
 package com.example.jeremy.tqfthpg.CharacterScreen;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Movie;
+import android.support.design.widget.FloatingActionButton;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.preference.PreferenceManager;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.jeremy.tqfthpg.AppInitiliser;
 import com.example.jeremy.tqfthpg.CharacterScreen.Model.PCharacter;
+import com.example.jeremy.tqfthpg.MainGame.MainGameActivity;
 import com.example.jeremy.tqfthpg.NameScreen.NameInterface;
 import com.example.jeremy.tqfthpg.R;
 
@@ -60,6 +63,7 @@ public class CharacterFragment extends Fragment implements CharacterInterface.vi
 
         PCharacter[] PlayerChars = presenter.genChars(Integer.parseInt(PlayerNo), firstnames);
 
+
         //------------------------------------------------------------------------------------------
         //recyclerview
         charlist = new ArrayList<PCharacter>();
@@ -78,13 +82,26 @@ public class CharacterFragment extends Fragment implements CharacterInterface.vi
 
         //------------------------------------------------------------------------------------------
 
+        final FloatingActionButton fab = view.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getView().getContext(), MainGameActivity.class);
+                startActivity(intent);
+            }
+        });
 
-
-        /*for(int i =0; i<newTemp.length;i++){
-            //Log.e("tag","Lastname: "+newTemp[i].getFullname()+", Race: "+newTemp[i].getRace()+", Class: "+newTemp[i].getCharclass()
-            //+", Weakness: "+newTemp[i].getWeakness());
-            Log.e("tag",newTemp[i].getDescription());
-        }*/
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy > 0 && fab.getVisibility() == View.VISIBLE) {
+                    fab.hide();
+                } else if (dy < 0 && fab.getVisibility() != View.VISIBLE) {
+                    fab.show();
+                }
+            }
+        });
 
         return view;
     }

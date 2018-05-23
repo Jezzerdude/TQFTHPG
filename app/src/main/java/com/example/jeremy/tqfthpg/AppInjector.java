@@ -6,6 +6,9 @@ import com.example.jeremy.tqfthpg.CharacterScreen.CharacterPresenter;
 import com.example.jeremy.tqfthpg.DifficultyScreen.DiffFragment;
 import com.example.jeremy.tqfthpg.DifficultyScreen.DiffInterface;
 import com.example.jeremy.tqfthpg.DifficultyScreen.DiffPresenter;
+import com.example.jeremy.tqfthpg.MainGame.MainGameFragment;
+import com.example.jeremy.tqfthpg.MainGame.MainGameInterface;
+import com.example.jeremy.tqfthpg.MainGame.MainGamePresenter;
 import com.example.jeremy.tqfthpg.NameScreen.NameInterface;
 import com.example.jeremy.tqfthpg.NameScreen.NamePresenter;
 
@@ -30,6 +33,12 @@ public class AppInjector {
 
     @Provides
     @Singleton
+    MainGameInterface.MainPresenterInterface provideMainGamePresenter(){
+        return new MainGamePresenter();
+    }
+
+    @Provides
+    @Singleton
     NameInterface.presenterInterface providenameContractPresenter(){
         return new NamePresenter();
     }
@@ -45,4 +54,6 @@ public class AppInjector {
     CharacterInterface.viewInterface provideCharFragment(){
         return new CharacterFragment();
     }
+
+
 }

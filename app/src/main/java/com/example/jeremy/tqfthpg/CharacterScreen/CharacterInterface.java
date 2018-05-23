@@ -17,5 +17,7 @@ public interface CharacterInterface {
         String genClass();
         String genWeakness();
         String genDescription(String race, String PClass,String Name,String Weakness);
+        void SaveCharacters(PCharacter[] chars);
+        void DeleteCharacters();
     }
 }
