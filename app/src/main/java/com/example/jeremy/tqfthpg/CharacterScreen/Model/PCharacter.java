@@ -1,6 +1,9 @@
 package com.example.jeremy.tqfthpg.CharacterScreen.Model;
 
-public class PCharacter {
+import io.realm.RealmObject;
+
+public class PCharacter extends RealmObject {
+    private int Id;
     private String Race;
     private String Charclass;
     private String Firstname;
@@ -12,7 +15,8 @@ public class PCharacter {
     public PCharacter() {
     }
 
-    public PCharacter(String race, String charclass, String firstname, String lastname, String fullname, String weakness, String description) {
+    public PCharacter(int id, String race, String charclass, String firstname, String lastname, String fullname, String weakness, String description) {
+        Id = id;
         Race = race;
         Charclass = charclass;
         Firstname = firstname;
@@ -20,6 +24,14 @@ public class PCharacter {
         Fullname = fullname;
         Weakness = weakness;
         Description = description;
+    }
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
     }
 
     public String getRace() {

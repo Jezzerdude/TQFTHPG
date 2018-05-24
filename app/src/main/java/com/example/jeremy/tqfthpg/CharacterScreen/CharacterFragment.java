@@ -61,8 +61,9 @@ public class CharacterFragment extends Fragment implements CharacterInterface.vi
             firstnames[i]= app_pref.getString("Name"+(i+1), "Null");
         }
 
+        presenter.DeleteCharacters();
         PCharacter[] PlayerChars = presenter.genChars(Integer.parseInt(PlayerNo), firstnames);
-
+        presenter.SaveCharacters(PlayerChars);
 
         //------------------------------------------------------------------------------------------
         //recyclerview

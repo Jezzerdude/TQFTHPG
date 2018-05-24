@@ -6,4 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".MainGame.MainGameActivity">
 
+    <RelativeLayout
+        android:id="@+id/fragMainGame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </RelativeLayout>
+
 </android.support.constraint.ConstraintLayout>

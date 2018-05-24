@@ -1,9 +1,14 @@
 package com.example.jeremy.tqfthpg.CharacterScreen;
 
+import android.util.Log;
+
 import com.example.jeremy.tqfthpg.CharacterScreen.Model.PCharacter;
 import com.example.jeremy.tqfthpg.DifficultyScreen.DiffFragment;
 
 import java.util.Random;
+
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class CharacterPresenter implements CharacterInterface.presenterInterface {
 
@@ -13,6 +18,7 @@ public class CharacterPresenter implements CharacterInterface.presenterInterface
     private String[] UsedClasses = new String[8];
     private String[] UsedWeaknesses = new String[8];
     private String[] UsedDescription = new String[8];
+    Realm realm = Realm.getDefaultInstance();
 
     @Override
     public CharacterFragment getFragment() {
@@ -33,7 +39,7 @@ public class CharacterPresenter implements CharacterInterface.presenterInterface
             String TempSur = genSurName(TempRace);
             String TempFullName = FirstNames[Counter] + " " + TempSur;
             String TempDesc = genDescription(TempRace,TempClass,TempFullName,TempWeakness);
-            PCharacter character = new PCharacter(TempRace, TempClass, FirstNames[Counter], TempSur, TempFullName, TempWeakness, TempDesc);
+            PCharacter character = new PCharacter(i,TempRace, TempClass, FirstNames[Counter], TempSur, TempFullName, TempWeakness, TempDesc);
             CharacterArray[i] = character;
             Counter++;
         }
@@ -216,11 +222,30 @@ public class CharacterPresenter implements CharacterInterface.presenterInterface
 
     @Override
     public void SaveCharacters(PCharacter[] chars) {
-
+        for(int i = 0;i<chars.length;i++){
+            realm.beginTransaction();
+            PCharacter pCharacter = realm.createObject(PCharacter.class);
+            pCharacter.setId(chars[i].getId());
+            pCharacter.setFirstname(chars[i].getFirstname());
+            pCharacter.setLastname(chars[i].getLastname());
+            pCharacter.setFullname(chars[i].getFullname());
+            pCharacter.setCharclass(chars[i].getCharclass());
+            pCharacter.setRace(chars[i].getRace());
+            pCharacter.setWeakness(chars[i].getWeakness());
+            pCharacter.setDescription(chars[i].getDescription());
+            realm.commitTransaction();
+            Log.d("Players: ", "Player added!");
+        }
     }
+
+
 
     @Override
     public void DeleteCharacters() {
-
+        RealmResults<PCharacter> result = realm.where(PCharacter.class).findAll();;
+        realm.beginTransaction();
+        result.deleteAllFromRealm();
+        realm.commitTransaction();
+        Log.e("Players: ","Users Deleted!");
     }
 }
