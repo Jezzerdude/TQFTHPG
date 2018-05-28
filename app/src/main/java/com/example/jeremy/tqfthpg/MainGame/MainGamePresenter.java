@@ -41,12 +41,12 @@ public class MainGamePresenter implements MainGameInterface.MainPresenterInterfa
         int[] Leads= GenLeadChar(MaxPlayers);
 
 
-        Events startingTown = new Events(0,"startingTown","Single","","bla bla bla","Travel onwards: ",players[0].getId(),"Drink!");
-        Events volcano = new Events(1,"Volcano","Multiple","","bla bla bla 2","Build a bridge: ","Climb around it: ","Jump the lava: ",players[0].getId(),"Drink! 2","NA");
-        Events lightning = new Events(2,"Ligtning Strike","Multiple","","bla bla bla 2","Run through: ","Build a lighting Rod: ","Find an alternate route: ",players[0].getId(),"Drink! 3","NA");
-        Events rocks = new Events(3,"Rock Slide","Multiple","","bla bla bla 2","Dodge the rocks: ","Smash through the rocks: ","Take cover: ",players[0].getId(),"Drink! 4","NA");
-        Events cliff = new Events(4,"Cliff walk","Multiple","","bla bla bla 2","Navigate the cliffs: ","Tunnel through: ","Find an alternate route: ",players[0].getId(),"Drink! 5","NA");
-        Events THPG = new Events(5,"THPG!","Single","","bla bla bla 3","Take the grail: ",players[0].getId(),"Drink! 6");
+        Events startingTown = new Events(0,"startingTown","Single","","You Leave the town to start your adventure!","Travel onwards: ",players[0].getId(),"Drink!");
+        Events volcano = new Events(1,"Volcano","Multiple","","A towering Volcano appears before you.  What will you do?","Build a bridge: ","Climb around it: ","Jump the lava: ",players[0].getId(),"Drink! 2","NA");
+        Events lightning = new Events(2,"Ligtning Strike","Multiple","","A vicious storm has broken out in front of you.  How will you proceed?","Run through: ","Build a lighting Rod: ","Find an alternate route: ",players[0].getId(),"Drink! 3","NA");
+        Events rocks = new Events(3,"Rock Slide","Multiple","","Your attention is caught by a sudden rock slide.  As the bolders hurtle torwards you, you:","Dodge the rocks: ","Smash through the rocks: ","Take cover: ",players[0].getId(),"Drink! 4","NA");
+        Events cliff = new Events(4,"Cliff walk","Multiple","","A perilous cliff walk with a small path lies ahead, what should you do?","Navigate the cliffs: ","Tunnel through: ","Find an alternate route: ",players[0].getId(),"Drink! 5","NA");
+        Events THPG = new Events(5,"THPG!","Single","","The Holy Pint Glass stands before you!","Take the grail: ",players[0].getId(),"Drink! 6");
 
         eventList[0] = startingTown;
         eventList[1] = volcano;

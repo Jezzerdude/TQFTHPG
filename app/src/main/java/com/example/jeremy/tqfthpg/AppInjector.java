@@ -13,6 +13,10 @@ import com.example.jeremy.tqfthpg.MainGame.MainGameLoadingScreenActivity;
 import com.example.jeremy.tqfthpg.MainGame.MainGamePresenter;
 import com.example.jeremy.tqfthpg.NameScreen.NameInterface;
 import com.example.jeremy.tqfthpg.NameScreen.NamePresenter;
+import com.example.jeremy.tqfthpg.ResultsScreen.ResultsActivity;
+import com.example.jeremy.tqfthpg.ResultsScreen.ResultsFragment;
+import com.example.jeremy.tqfthpg.ResultsScreen.ResultsInterface;
+import com.example.jeremy.tqfthpg.ResultsScreen.ResultsPresenter;
 
 import javax.inject.Singleton;
 
@@ -75,5 +79,22 @@ public class AppInjector {
         return new MainGameLoadingScreenActivity();
     }
 
+    @Provides
+    @Singleton
+    ResultsInterface.MainViewInterface provideResultsActivity() {
+        return new ResultsActivity();
+    }
+
+    @Provides
+    @Singleton
+    ResultsInterface.MainPresenterInterface providenameResultsPresenter(){
+        return new ResultsPresenter();
+    }
+
+    @Provides
+    @Singleton
+    ResultsInterface.MainViewInterface provideResultsFragment() {
+        return new ResultsFragment();
+    }
 
 }
