@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainGame.MainGameFragment2">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ImageView
+        android:id="@+id/eventImg"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginBottom="50dp"/>
+
+    <TextView
+        android:id="@+id/passOrFailText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pass or fail: "
+        android:layout_below="@id/eventImg"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:id="@+id/passOrFailResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="maybe"
+        android:layout_below="@id/eventImg"
+        android:layout_toRightOf="@id/passOrFailText"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:id="@+id/resultText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Results here"
+        android:layout_below="@id/passOrFailText" />
+
+    <Button
+        android:id="@+id/continueButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Continue!"
+        android:layout_below="@id/resultText"
+        android:layout_centerHorizontal="true"/>
+
+
+</RelativeLayout>

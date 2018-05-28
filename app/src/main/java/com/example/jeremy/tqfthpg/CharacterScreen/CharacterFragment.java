@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.example.jeremy.tqfthpg.AppInitiliser;
 import com.example.jeremy.tqfthpg.CharacterScreen.Model.PCharacter;
 import com.example.jeremy.tqfthpg.MainGame.MainGameActivity;
+import com.example.jeremy.tqfthpg.MainGame.MainGameLoadingScreenActivity;
 import com.example.jeremy.tqfthpg.NameScreen.NameInterface;
 import com.example.jeremy.tqfthpg.R;
 
@@ -39,6 +40,7 @@ public class CharacterFragment extends Fragment implements CharacterInterface.vi
     private OnFragmentInteractionListener mListener;
 
     SharedPreferences app_pref;
+    SharedPreferences.Editor editor;
 
     RecyclerView recyclerView;
     CharacterAdapter characterAdapter;
@@ -64,6 +66,12 @@ public class CharacterFragment extends Fragment implements CharacterInterface.vi
         presenter.DeleteCharacters();
         PCharacter[] PlayerChars = presenter.genChars(Integer.parseInt(PlayerNo), firstnames);
         presenter.SaveCharacters(PlayerChars);
+        int state = 0;
+        int result = 0;
+        editor = app_pref.edit();
+        editor.putInt("State", state).apply();
+        editor.putInt("Result", result).apply();
+
 
         //------------------------------------------------------------------------------------------
         //recyclerview
@@ -87,7 +95,7 @@ public class CharacterFragment extends Fragment implements CharacterInterface.vi
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getView().getContext(), MainGameActivity.class);
+                Intent intent = new Intent(getView().getContext(), MainGameLoadingScreenActivity.class);
                 startActivity(intent);
             }
         });

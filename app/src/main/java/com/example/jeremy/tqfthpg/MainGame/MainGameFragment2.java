@@ -6,9 +6,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,47 +15,38 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.jeremy.tqfthpg.AppInitiliser;
-import com.example.jeremy.tqfthpg.CharacterScreen.CharacterInterface;
-import com.example.jeremy.tqfthpg.CharacterScreen.Model.PCharacter;
-import com.example.jeremy.tqfthpg.Instructions.InstructionActivity;
 import com.example.jeremy.tqfthpg.MainGame.Model2.Events;
-import com.example.jeremy.tqfthpg.NameScreen.NameActivity;
 import com.example.jeremy.tqfthpg.R;
-
-import java.util.Arrays;
+import com.example.jeremy.tqfthpg.ResultsScreen.ResultsActivity;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainGameFragment extends Fragment implements MainGameInterface.MainViewInterface {
+
+public class MainGameFragment2 extends Fragment implements MainGameInterface.MainViewInterface {
 
     @BindView(R.id.eventImg)
     ImageView eventImg;
-    @BindView(R.id.desc)
-    TextView desc;
-    @BindView(R.id.op1)
-    TextView op1;
-    @BindView(R.id.op2)
-    TextView op2;
-    @BindView(R.id.op3)
-    TextView op3;
-    @BindView(R.id.button1)
-    Button button1;
-    @BindView(R.id.button2)
-    Button button2;
-    @BindView(R.id.button3)
-    Button button3;
-
-    private OnFragmentInteractionListener mListener;
-    SharedPreferences app_pref;
-    SharedPreferences.Editor editor;
+    @BindView(R.id.passOrFailText)
+    TextView passOrFailText;
+    @BindView(R.id.passOrFailResult)
+    TextView passOrFailResult;
+    @BindView(R.id.resultText)
+    TextView resultText;
+    @BindView(R.id.continueButton)
+    Button continueButton;
 
     @Inject
     MainGameInterface.MainPresenterInterface presenter;
 
-    public MainGameFragment() {
+    private OnFragmentInteractionListener mListener;
+
+    SharedPreferences app_pref;
+    SharedPreferences.Editor editor;
+
+    public MainGameFragment2() {
         // Required empty public constructor
     }
 
@@ -65,35 +54,40 @@ public class MainGameFragment extends Fragment implements MainGameInterface.Main
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_main_game, container, false);
+        View view = inflater.inflate(R.layout.fragment_main_game_fragment2, container, false);
         ((AppInitiliser) getActivity().getApplication()).getAppInjectorDependencyComponent().inject(this);
-        ButterKnife.bind(this, view);
 
-        button1.setOnClickListener(onClickListener);
-        button2.setOnClickListener(onClickListener);
-        button3.setOnClickListener(onClickListener);
+        ButterKnife.bind(this, view);
 
         app_pref = PreferenceManager.getDefaultSharedPreferences(view.getContext());
         int PlayerNo = Integer.parseInt(app_pref.getString("PlayerNo", "Null"));
-        String Difficulty = app_pref.getString("Difficulty", "Null");
         int GameState = app_pref.getInt("State",0);
+        String OptionSelected = app_pref.getString("OptionSelected","option1");
 
         Events[] gameEvents = presenter.getEvents(PlayerNo*2);
 
+        String PF = presenter.rollResult(gameEvents[GameState]);
 
         eventImg.setImageResource(R.drawable.arrow);
-        desc.setText(gameEvents[GameState].getDescription());
-        op1.setText(gameEvents[GameState].getAct1());
-        op2.setText(gameEvents[GameState].getAct2());
-        op3.setText(gameEvents[GameState].getAct3());
-        if(op2.getText().equals("")){
-            op2.setVisibility(View.GONE);
-            op3.setVisibility(View.GONE);
-            button2.setVisibility(View.GONE);
-            button3.setVisibility(View.GONE);
+        continueButton.setOnClickListener(onClickListener);
+        presenter.OverloadResult(gameEvents[GameState],PF,OptionSelected);
+        resultText.setText(gameEvents[GameState].getEventResult());
+
+        if(PF.equals("Pass")){
+            passOrFailResult.setText("Passed!");
+        }else{
+            passOrFailResult.setText("Failed!");
         }
 
-        return view;
+        if(gameEvents[GameState].getEventType().equals("Single")){
+            passOrFailText.setVisibility(View.GONE);
+            passOrFailResult.setVisibility(View.GONE);
+        }else{
+            passOrFailText.setVisibility(View.VISIBLE);
+            passOrFailResult.setVisibility(View.VISIBLE);
+        }
+
+        return  view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -129,27 +123,32 @@ public class MainGameFragment extends Fragment implements MainGameInterface.Main
         @Override
         public void onClick(View view) {
             switch (view.getId()) {
-                case R.id.button1:
-                    OnButtonPressed("option1");
-                    break;
-                case R.id.button2:
-                    OnButtonPressed("option2");
-                    break;
-                case R.id.button3:
-                    OnButtonPressed("option3");
+                case R.id.continueButton:
+                    OnButtonPressed();
                     break;
 
             }
 
         }
 
-        void OnButtonPressed(String state) {
+        void OnButtonPressed() {
             if (mListener != null) {
-                editor = app_pref.edit();
-                editor.putInt("Result", 1).apply();
-                editor.putString("OptionSelected", state).apply();
-                Intent intent = new Intent(getView().getContext(), MainGameActivity.class);
-                startActivity(intent);
+
+                app_pref = PreferenceManager.getDefaultSharedPreferences(getView().getContext());
+                int GameState = app_pref.getInt("State",0);
+                int EventNo = app_pref.getInt("noOfEvents", 0);
+
+                if(EventNo-1 != GameState) {
+                    int NewState = GameState + 1;
+                    editor = app_pref.edit();
+                    editor.putInt("State", NewState).apply();
+                    editor.putInt("Result", 0).apply();
+                    Intent intent = new Intent(getView().getContext(), MainGameActivity.class);
+                    startActivity(intent);
+                }else{
+                    Intent intent = new Intent(getView().getContext(), ResultsActivity.class);
+                    startActivity(intent);
+                }
             }
         }
     };

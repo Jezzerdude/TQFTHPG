@@ -28,16 +28,19 @@
             android:name=".CharacterScreen.CharacterActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait" />
-        <activity android:name=".ResultsScreen.ResultsActivity"
+        <activity
+            android:name=".ResultsScreen.ResultsActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait" />
-        <activity android:name=".MainGame.MainGameActivity"
+        <activity
+            android:name=".MainGame.MainGameActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait" />
-        <activity android:name=".NameScreen.NameActivity"
+        <activity
+            android:name=".NameScreen.NameActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait" >
-        </activity>
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".MainGame.MainGameLoadingScreenActivity"></activity>
     </application>
 
 </manifest>

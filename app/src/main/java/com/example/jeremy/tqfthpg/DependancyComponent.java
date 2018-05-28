@@ -6,6 +6,8 @@ import com.example.jeremy.tqfthpg.DifficultyScreen.DiffFragment;
 import com.example.jeremy.tqfthpg.DifficultyScreen.MainActivity;
 import com.example.jeremy.tqfthpg.MainGame.MainGameActivity;
 import com.example.jeremy.tqfthpg.MainGame.MainGameFragment;
+import com.example.jeremy.tqfthpg.MainGame.MainGameFragment2;
+import com.example.jeremy.tqfthpg.MainGame.MainGameLoadingScreenActivity;
 import com.example.jeremy.tqfthpg.NameScreen.NameActivity;
 
 import javax.inject.Singleton;
@@ -21,4 +23,7 @@ public interface DependancyComponent {
     void inject(DiffFragment mainFragment);
     void inject(NameActivity nameActivity);
     void inject(CharacterFragment characterFragment);
+    void inject(MainGameFragment mainGameFragment);
+    void inject(MainGameFragment2 mainGameFragment2);
+    void inject(MainGameLoadingScreenActivity mainGameLoadingScreenActivity);
 }

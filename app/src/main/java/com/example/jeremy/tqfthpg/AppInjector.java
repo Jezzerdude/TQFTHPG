@@ -7,7 +7,9 @@ import com.example.jeremy.tqfthpg.DifficultyScreen.DiffFragment;
 import com.example.jeremy.tqfthpg.DifficultyScreen.DiffInterface;
 import com.example.jeremy.tqfthpg.DifficultyScreen.DiffPresenter;
 import com.example.jeremy.tqfthpg.MainGame.MainGameFragment;
+import com.example.jeremy.tqfthpg.MainGame.MainGameFragment2;
 import com.example.jeremy.tqfthpg.MainGame.MainGameInterface;
+import com.example.jeremy.tqfthpg.MainGame.MainGameLoadingScreenActivity;
 import com.example.jeremy.tqfthpg.MainGame.MainGamePresenter;
 import com.example.jeremy.tqfthpg.NameScreen.NameInterface;
 import com.example.jeremy.tqfthpg.NameScreen.NamePresenter;
@@ -53,6 +55,24 @@ public class AppInjector {
     @Singleton
     CharacterInterface.viewInterface provideCharFragment(){
         return new CharacterFragment();
+    }
+
+    @Provides
+    @Singleton
+    MainGameInterface.MainViewInterface provideMGFragment(){
+        return new MainGameFragment();
+    }
+
+    @Provides
+    @Singleton
+    MainGameInterface.MainViewInterface provideMGFragment2(){
+        return new MainGameFragment2();
+    }
+
+    @Provides
+    @Singleton
+    MainGameInterface.MainViewInterface provideLoadingActivity() {
+        return new MainGameLoadingScreenActivity();
     }
 
 

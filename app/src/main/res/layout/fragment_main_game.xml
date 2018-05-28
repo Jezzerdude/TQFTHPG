@@ -1,14 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainGame.MainGameFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ImageView
+        android:id="@+id/eventImg"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="250dp"
+        android:layout_marginBottom="50dp"/>
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_blank_fragment"
+        android:layout_below="@id/eventImg"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:id="@+id/op1"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/desc"
+        android:text="Placeholder 1"
+        android:layout_marginBottom="50dp"/>
+
+    <TextView
+        android:id="@+id/op2"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/op1"
+        android:text="Placeholder 2"
+        android:layout_marginBottom="50dp"/>
+
+    <TextView
+        android:id="@+id/op3"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/op2"
+        android:text="Placeholder 3"
+        android:layout_marginBottom="20dp"/>
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/desc"
+        android:layout_toRightOf="@id/op1"
+        android:text="Option 1"/>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/op1"
+        android:layout_toRightOf="@id/op2"
+        android:text="Option 2"/>
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/op2"
+        android:layout_toRightOf="@id/op3"
+        android:text="Option 3"/>
+
+</RelativeLayout>
