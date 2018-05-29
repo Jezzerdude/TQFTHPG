@@ -19,7 +19,7 @@ public interface MainGameInterface {
         void DeleteEvents();
         Events[] getEvents(int MaxEvents);
         String rollResult(Events activeEvent);
-        void OverloadResult(Events activeEvent, String PassOrFail, String Option);
+        void OverloadResult(Events activeEvent, String PassOrFail, String Option, String Difficulty);
     }
 
     interface MainViewInterface{

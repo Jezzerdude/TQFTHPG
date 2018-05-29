@@ -64,6 +64,7 @@ public class MainGameFragment2 extends Fragment implements MainGameInterface.Mai
         int PlayerNo = Integer.parseInt(app_pref.getString("PlayerNo", "Null"));
         int GameState = app_pref.getInt("State",0);
         String OptionSelected = app_pref.getString("OptionSelected","option1");
+        String Difficulty = app_pref.getString("Difficulty", "Null");
 
         Events[] gameEvents = presenter.getEvents(PlayerNo*2);
 
@@ -73,10 +74,10 @@ public class MainGameFragment2 extends Fragment implements MainGameInterface.Mai
         continueButton.setOnClickListener(onClickListener);
 
         PCharacter[] playerList = presenter.getPlayers(PlayerNo);
-        presenter.OverloadResult(gameEvents[GameState],PF,OptionSelected);
+        presenter.OverloadResult(gameEvents[GameState],PF,OptionSelected, Difficulty);
         String LeaderForThisEvent = playerList[gameEvents[GameState].getLeadChar()].getFullname();
 
-        if(gameEvents[GameState].getEventType().equals("Multiple")) {
+        if(gameEvents[GameState].getEventType().equals("Multiple")||gameEvents[GameState].getEventType().equals("SingleWithPlayer")) {
             resultText.setText(LeaderForThisEvent + ", " + gameEvents[GameState].getEventResult());
         }else{
             resultText.setText(gameEvents[GameState].getEventResult());
@@ -88,7 +89,7 @@ public class MainGameFragment2 extends Fragment implements MainGameInterface.Mai
             passOrFailResult.setText("Failed!");
         }
 
-        if(gameEvents[GameState].getEventType().equals("Single")){
+        if(gameEvents[GameState].getEventType().equals("Single")||gameEvents[GameState].getEventType().equals("SingleWithPlayer")){
             passOrFailText.setVisibility(View.GONE);
             passOrFailResult.setVisibility(View.GONE);
         }else{
