@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.jeremy.tqfthpg.AppInitiliser;
+import com.example.jeremy.tqfthpg.CharacterScreen.Model.PCharacter;
 import com.example.jeremy.tqfthpg.MainGame.Model2.Events;
 import com.example.jeremy.tqfthpg.R;
 import com.example.jeremy.tqfthpg.ResultsScreen.ResultsActivity;
@@ -70,8 +71,16 @@ public class MainGameFragment2 extends Fragment implements MainGameInterface.Mai
 
         eventImg.setImageResource(R.drawable.arrow);
         continueButton.setOnClickListener(onClickListener);
+
+        PCharacter[] playerList = presenter.getPlayers(PlayerNo);
         presenter.OverloadResult(gameEvents[GameState],PF,OptionSelected);
-        resultText.setText(gameEvents[GameState].getEventResult());
+        String LeaderForThisEvent = playerList[gameEvents[GameState].getLeadChar()].getFullname();
+
+        if(gameEvents[GameState].getEventType().equals("Multiple")) {
+            resultText.setText(LeaderForThisEvent + ", " + gameEvents[GameState].getEventResult());
+        }else{
+            resultText.setText(gameEvents[GameState].getEventResult());
+        }
 
         if(PF.equals("Pass")){
             passOrFailResult.setText("Passed!");

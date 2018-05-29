@@ -79,10 +79,20 @@ public class MainGameFragment extends Fragment implements MainGameInterface.Main
         int GameState = app_pref.getInt("State",0);
 
         Events[] gameEvents = presenter.getEvents(PlayerNo*2);
+        PCharacter[] playerList = presenter.getPlayers(PlayerNo);
+        String LeaderForThisEvent = playerList[gameEvents[GameState].getLeadChar()].getFullname();
 
 
         eventImg.setImageResource(R.drawable.arrow);
-        desc.setText(gameEvents[GameState].getDescription());
+
+        if(gameEvents[GameState].getEventType().equals("Multiple")) {
+            desc.setText(LeaderForThisEvent + ", " + gameEvents[GameState].getDescription());
+        }else{
+            desc.setText(gameEvents[GameState].getDescription());
+        }
+
+
+
         op1.setText(gameEvents[GameState].getAct1());
         op2.setText(gameEvents[GameState].getAct2());
         op3.setText(gameEvents[GameState].getAct3());
