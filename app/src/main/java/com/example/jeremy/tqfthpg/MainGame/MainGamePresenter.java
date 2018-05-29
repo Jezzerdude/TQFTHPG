@@ -41,27 +41,27 @@ public class MainGamePresenter implements MainGameInterface.MainPresenterInterfa
         int[] Leads= GenLeadChar(MaxPlayers);
 
 
-        Events startingTown = new Events(0,"startingTown","Single","","You Leave the town to start your adventure!","Travel onwards: ",players[0].getId(),"");
-        Events volcano = new Events(1,"Volcano","Multiple","","A towering Volcano appears before you.  What will you do?","Build a bridge: ","Climb around it: ","Jump the lava: ",players[0].getId(),"","NA");
-        Events lightning = new Events(2,"Ligtning Strike","Multiple","","A vicious storm has broken out in front of you. Lightning repeatedly strikes the ground leaving small smoking piles.  How will you proceed?","Run through: ","Build a lighting Rod: ","Find an alternate route: ",players[0].getId(),"","NA");
-        Events rocks = new Events(3,"Rock Slide","Multiple","","Your attention is caught by a sudden rock slide.  As the bolders hurtle torwards you, you:","Dodge the rocks: ","Smash through the rocks: ","Take cover: ",players[0].getId(),"","NA");
-        Events cliff = new Events(4,"Cliff walk","Multiple","","A perilous cliff walk with a small path lies ahead, what should you do?","Navigate the cliffs: ","Tunnel through: ","Find an alternate route: ",players[0].getId(),"","NA");
-        Events BarAntics = new Events(5,"Bar Antics","Multiple","","Along your way you stumble into a tavern, what would you like to do?","Order a few drinks: ","Get involved in a small poker game going on in the corner: ","Socialise with the locals: ",players[0].getId(),"","NA");
-        Events Djinn = new Events(6,"The Djinn","Multiple","","A mystical Djinn appears before you and grants you 1 wish.  What do you wish for?","Wish for Power: ","Wish for wealth: ","Wish for alcohol: ",players[0].getId(),"","NA");
-        Events Coaster = new Events(7,"The Holy Coaster","Multiple","","You find the Holy Coaster, an artifact long thought lost to the ages! What will you do with it?","Attempt to use its ancient power: ","Keep it: ","Discard it: ",players[0].getId(),"","NA");
-        Events RogueSquirrel = new Events(8,"Attacked by a rogue Squirrel","Multiple","","A rogue squirrel attacks you. What do you do?","Fight: ","Attempt to negotiate: ","Flee: ",players[0].getId(),"","NA");
-        Events BanditAttack = new Events(9,"Bandit attack","Multiple","","A small group of bandits attack you. What do you do?","Fight: ","Attempt to negotiate: ","Flee: ",players[0].getId(),"","NA");
-        Events TheEvilKnight = new Events(10,"Attacked by the Evil Knight","Multiple","","The Dreaded Evil Knight appears and attacks you. What do you do?","Fight: ","Attempt to negotiate: ","Flee: ",players[0].getId(),"","NA");
-        Events SwarmOfBeetles = new Events(11,"Attacked by a Swarm of Beetles","Multiple","","A swarm of beetles attack you. What do you do?","Fight: ","Attempt to negotiate: ","Flee: ",players[0].getId(),"","NA");
-        Events RopeBridge = new Events(1,"Crossing the rope bridge","Multiple","","You find yourself at a wide ravine with a rope bridge going across it. It dosen't look very safe.  What do you do?","Just cross the bridge: ","Climb down the ravine: ","Pray to the spirits for guidance and cross carefully: ",players[0].getId(),"","NA");
-        Events TheDeep = new Events(1,"Entering the Deep","Multiple","","A single path heads down into the Deep. The Deep is known to be full of dangers... but it would speed up your journey considerably.","Enter the Deep: ","Leave the Path and find a safer route: ","Loudly exclaim to the party that they: Shall Not Pass! ",players[0].getId(),"","NA");
+        Events startingTown = new Events(0,"startingTown","Single","R.drawable.volcano","You Leave the town to start your adventure!","Travel onwards: ",players[0].getId(),"");
+        Events volcano = new Events(1,"Volcano","Multiple","@drawable/volcano","A towering Volcano appears before you. As you trek down the ssulfurous path you are blocked by a stream of lava. What will you do?","Build a bridge: ","Climb around it: ","Jump the lava: ",players[0].getId(),"","NA");
+        Events lightning = new Events(2,"Lightning Strike","Multiple","@drawable/volcano","A vicious storm has broken out in front of you. Lightning repeatedly strikes the ground leaving small smoking piles.  How will you proceed?","Run through: ","Build a lighting Rod: ","Find an alternate route: ",players[0].getId(),"","NA");
+        Events rocks = new Events(3,"Rock Slide","Multiple","@drawable/volcano","Your attention is caught by a sudden rock slide.  As the bolders hurtle torwards you, you:","Dodge the rocks: ","Smash through the rocks: ","Take cover: ",players[0].getId(),"","NA");
+        Events cliff = new Events(4,"Cliff walk","Multiple","@drawable/volcano","A perilous cliff walk with a small path lies ahead, what should you do?","Navigate the cliffs: ","Tunnel through: ","Find an alternate route: ",players[0].getId(),"","NA");
+        Events BarAntics = new Events(5,"Bar Antics","Multiple","@drawable/volcano","Along your way you stumble into a tavern, what would you like to do?","Order a few drinks: ","Get involved in a small poker game going on in the corner: ","Socialise with the locals: ",players[0].getId(),"","NA");
+        Events Djinn = new Events(6,"The Djinn","Multiple","@drawable/volcano","A mystical Djinn appears before you and grants you 1 wish.  What do you wish for?","Wish for Power: ","Wish for wealth: ","Wish for alcohol: ",players[0].getId(),"","NA");
+        Events Coaster = new Events(7,"The Holy Coaster","Multiple","@drawable/volcano","You find the Holy Coaster, an artifact long thought lost to the ages! What will you do with it?","Attempt to use its ancient power: ","Keep it: ","Discard it: ",players[0].getId(),"","NA");
+        Events RogueSquirrel = new Events(8,"Attacked by a rogue Squirrel","Multiple","@drawable/volcano","A rogue squirrel attacks you. What do you do?","Fight: ","Attempt to negotiate: ","Flee: ",players[0].getId(),"","NA");
+        Events BanditAttack = new Events(9,"Bandit attack","Multiple","@drawable/volcano","A small group of bandits attack you. What do you do?","Fight: ","Attempt to negotiate: ","Flee: ",players[0].getId(),"","NA");
+        Events TheEvilKnight = new Events(10,"Attacked by the Evil Knight","Multiple","@drawable/volcano","The Dreaded Evil Knight appears and attacks you. What do you do?","Fight: ","Attempt to negotiate: ","Flee: ",players[0].getId(),"","NA");
+        Events SwarmOfBeetles = new Events(11,"Attacked by a Swarm of Beetles","Multiple","@drawable/volcano","A swarm of beetles attack you. What do you do?","Fight: ","Attempt to negotiate: ","Flee: ",players[0].getId(),"","NA");
+        Events RopeBridge = new Events(1,"Crossing the rope bridge","Multiple","@drawable/volcano","You find yourself at a wide ravine with a rope bridge going across it. It dosen't look very safe.  What do you do?","Just cross the bridge: ","Climb down the ravine: ","Pray to the spirits for guidance and cross carefully: ",players[0].getId(),"","NA");
+        Events TheDeep = new Events(1,"Entering the Deep","Multiple","@drawable/volcano","A single path heads down into the Deep. The Deep is known to be full of dangers, (Vampire bats and trolls), but it would speed up your journey considerably.","Enter the Deep: ","Leave the Path and find a safer route: ","Loudly exclaim to the party that they: Shall Not Pass! ",players[0].getId(),"","NA");
 
-        Events Injury = new Events(18,"Injury","SingleWithPlayer","","you have taken a crippling Injury.","Someone help me!: ",players[0].getId(),"Drink! 6");
-        Events Sickness = new Events(18,"Sickness","SingleWithPlayer","","you appear to have gone down with a nasty sickness.","Consult the medical manual: ",players[0].getId(),"Drink! 6");
-        Events CurseOfThePlatypus = new Events(18,"Curse of the Platypus!","SingleWithPlayer","","you seem to have been afflicted with the dreaded Curse of the Platypus!  You have been transformed into a Platypus.","Somebody do something! ",players[0].getId(),"Drink! 6");
+        Events Injury = new Events(18,"Injury","SingleWithPlayer","@drawable/volcano","you have taken a crippling Injury.","Someone help me!: ",players[0].getId(),"Drink! 6");
+        Events Sickness = new Events(18,"Sickness","SingleWithPlayer","@drawable/volcano","you appear to have gone down with a nasty sickness.","Consult the medical manual: ",players[0].getId(),"Drink! 6");
+        Events CurseOfThePlatypus = new Events(18,"Curse of the Platypus!","SingleWithPlayer","@drawable/volcano","you seem to have been afflicted with the dreaded Curse of the Platypus!  You have been transformed into a Platypus.","Somebody do something! ",players[0].getId(),"Drink! 6");
 
 
-        Events THPG = new Events(18,"THPG!","Single","","The Holy Pint Glass stands before you!","Take the grail: ",players[0].getId(),"Drink! 6");
+        Events THPG = new Events(18,"THPG!","Single","@drawable/volcano","The Holy Pint Glass stands before you!","Take the grail: ",players[0].getId(),"Drink! 6");
 
         eventList[0] = startingTown;
         eventList[1] = volcano;
@@ -210,10 +210,374 @@ public class MainGamePresenter implements MainGameInterface.MainPresenterInterfa
     }
 
     @Override
-    public String rollResult(Events activeEvent) {
+    public String rollResult(Events activeEvent, String Option,PCharacter[] Players) {
         int rand = (int) (Math.random() * ((100 - 1) + 1)) + 1;
+        int Modifier = 0;
 
-        if(rand>50){
+        if(activeEvent.getName().equals("Volcano")&& Option.equals("option1")){
+            String PClass = Players[activeEvent.getLeadChar()].getCharclass();
+
+            if(PClass.equals("Cannoneer")||PClass.equals("Fighter")||PClass.equals("Ranger")){
+                Modifier+=20;
+            }
+            if(PClass.equals("Tinkerer")){
+                Modifier+=40;
+            }
+            if(PClass.equals("Spiritualist")){
+                Modifier-=20;
+            }
+
+        }
+        if(activeEvent.getName().equals("Volcano")&& Option.equals("option2")){
+            String Race = Players[activeEvent.getLeadChar()].getRace();
+            String PClass = Players[activeEvent.getLeadChar()].getCharclass();
+
+            if(PClass.equals("Fighter")||PClass.equals("Ranger")||Race.equals("Goblin")||Race.equals("Changeling")||Race.equals("Ogre")){
+                Modifier+=20;
+            }
+            if(Race.equals("Wolfborn")){
+                Modifier-=20;
+            }
+        }
+        if(activeEvent.getName().equals("Volcano")&& Option.equals("option3")){
+            String Race = Players[activeEvent.getLeadChar()].getRace();
+            String PClass = Players[activeEvent.getLeadChar()].getCharclass();
+            String Weakness = Players[activeEvent.getLeadChar()].getWeakness();
+
+            if(Weakness.equals("Lava")){
+                Modifier-=70;
+            }
+
+            if(PClass.equals("Wizard")||Race.equals("Wolfborn")||Race.equals("Ogre")||Race.equals("Changeling")||Race.equals("Elf")){
+                Modifier+=20;
+            }
+
+            if(PClass.equals("Cannoneer")||Race.equals("Goblin")||Race.equals("Dwarf")){
+                Modifier-=20;
+            }
+        }
+
+        //------------------------------------------------------------------------------------------
+
+        if(activeEvent.getName().equals("Lightning Strike")&& Option.equals("option1")){
+            String Race = Players[activeEvent.getLeadChar()].getRace();
+            String PClass = Players[activeEvent.getLeadChar()].getCharclass();
+
+            if(PClass.equals("Thief")||PClass.equals("Fighter")||Race.equals("Wolfborn")||Race.equals("Goblin")||Race.equals("Elf")){
+                Modifier+=20;
+            }
+
+            if(PClass.equals("Wizard")){
+                Modifier+=50;
+            }
+
+            if(Race.equals("Ogre")||Race.equals("Dwarf")){
+                Modifier-=20;
+            }
+        }
+        if(activeEvent.getName().equals("Lightning Strike")&& Option.equals("option2")){
+            String Race = Players[activeEvent.getLeadChar()].getRace();
+            String PClass = Players[activeEvent.getLeadChar()].getCharclass();
+
+            if(Race.equals("Dwarf")){
+                Modifier+=20;
+            }
+
+            if(PClass.equals("Tinkerer")){
+                Modifier+=50;
+            }
+
+            if(PClass.equals("Spiritualist")||Race.equals("Lizard")||Race.equals("Ogre")){
+                Modifier-=20;
+            }
+        }
+        if(activeEvent.getName().equals("Lightning Strike")&& Option.equals("option3")){
+            String PClass = Players[activeEvent.getLeadChar()].getCharclass();
+
+            if(PClass.equals("Ranger")){
+                Modifier+=20;
+            }
+
+        }
+
+        //------------------------------------------------------------------------------------------
+
+        if(activeEvent.getName().equals("Rock Slide")&& Option.equals("option1")){
+            String Race = Players[activeEvent.getLeadChar()].getRace();
+            String PClass = Players[activeEvent.getLeadChar()].getCharclass();
+
+            if(Race.equals("Elf")||Race.equals("Goblin")||PClass.equals("Thief")){
+                Modifier+=20;
+            }
+
+            if(PClass.equals("Cannoneer")||Race.equals("Ogre")){
+                Modifier-=20;
+            }
+        }
+        if(activeEvent.getName().equals("Rock Slide")&& Option.equals("option2")){
+            String Race = Players[activeEvent.getLeadChar()].getRace();
+            String PClass = Players[activeEvent.getLeadChar()].getCharclass();
+            String Weakness = Players[activeEvent.getLeadChar()].getWeakness();
+
+            if(Weakness.equals("Death")){
+                Modifier-=70;
+            }
+
+            if(Race.equals("Ogre")||PClass.equals("Cannoneer")||PClass.equals("Fighter")||PClass.equals("Wizard")){
+                Modifier+=20;
+            }
+
+            if(PClass.equals("Cleric")||Race.equals("Elf")||Race.equals("Goblin")){
+                Modifier-=20;
+            }
+        }
+        if(activeEvent.getName().equals("Rock Slide")&& Option.equals("option3")){
+            String Race = Players[activeEvent.getLeadChar()].getRace();
+            String PClass = Players[activeEvent.getLeadChar()].getCharclass();
+
+            if(Race.equals("Goblin")){
+                Modifier+=20;
+            }
+
+            if(PClass.equals("Wizard")){
+                Modifier+=50;
+            }
+
+            if(Race.equals("Ogre")){
+                Modifier-=20;
+            }
+        }
+
+        //------------------------------------------------------------------------------------------
+
+        if(activeEvent.getName().equals("Cliff walk")&& Option.equals("option1")){
+            String Race = Players[activeEvent.getLeadChar()].getRace();
+            String PClass = Players[activeEvent.getLeadChar()].getCharclass();
+            String Weakness = Players[activeEvent.getLeadChar()].getWeakness();
+
+            if(PClass.equals("Ranger")||Race.equals("Goblin")||Race.equals("Wolfborn")){
+                Modifier+=20;
+            }
+
+            if(Weakness.equals("Heights")){
+                Modifier-=70;
+            }
+        }
+        if(activeEvent.getName().equals("Cliff walk")&& Option.equals("option2")){
+            String Race = Players[activeEvent.getLeadChar()].getRace();
+            String PClass = Players[activeEvent.getLeadChar()].getCharclass();
+
+            if(PClass.equals("Tinkerer")||PClass.equals("Cannoneer")||Race.equals("Lizard")){
+                Modifier+=20;
+            }
+
+            if(Race.equals("Dwarf")){
+                Modifier+=50;
+            }
+
+            if(PClass.equals("Cleric")){
+                Modifier-=20;
+            }
+        }
+        if(activeEvent.getName().equals("Cliff walk")&& Option.equals("option3")){
+            String PClass = Players[activeEvent.getLeadChar()].getCharclass();
+
+            if(PClass.equals("Ranger")){
+                Modifier+=20;
+            }
+        }
+
+        //------------------------------------------------------------------------------------------
+
+        if(activeEvent.getName().equals("Bar Antics")&& Option.equals("option1")){
+            String Race = Players[activeEvent.getLeadChar()].getRace();
+
+            if(Race.equals("Dwarf")||Race.equals("Ogre")||Race.equals("Lizard")){
+                Modifier+=20;
+            }
+
+            if(Race.equals("Goblin")){
+                Modifier-=20;
+            }
+        }
+        if(activeEvent.getName().equals("Bar Antics")&& Option.equals("option2")){
+            String PClass = Players[activeEvent.getLeadChar()].getCharclass();
+            String Weakness = Players[activeEvent.getLeadChar()].getWeakness();
+
+            if(PClass.equals("Wizard")){
+                Modifier+=20;
+            }
+
+            if(PClass.equals("Cleric")||Weakness.equals("Social Situations")){
+                Modifier-=20;
+            }
+
+        }
+        if(activeEvent.getName().equals("Bar Antics")&& Option.equals("option3")){
+            String Race = Players[activeEvent.getLeadChar()].getRace();
+            String Weakness = Players[activeEvent.getLeadChar()].getWeakness();
+
+            if(Race.equals("Human")||Race.equals("Changeling")){
+                Modifier+=20;
+            }
+
+            if(Race.equals("Goblin")||Race.equals("Ogre")||Race.equals("Wolfborn")){
+                Modifier-=20;
+            }
+
+            if(Weakness.equals("Social Situations")){
+                Modifier-=70;
+            }
+        }
+
+        //------------------------------------------------------------------------------------------
+
+        if(activeEvent.getName().equals("The Djinn")&& Option.equals("option1")){
+        }
+        if(activeEvent.getName().equals("The Djinn")&& Option.equals("option2")){
+        }
+        if(activeEvent.getName().equals("The Djinn")&& Option.equals("option3")){
+            String Weakness = Players[activeEvent.getLeadChar()].getWeakness();
+
+            if(Weakness.equals("Alcohol")){
+                Modifier-=50;
+            }
+        }
+
+        //------------------------------------------------------------------------------------------
+
+        if(activeEvent.getName().equals("The Holy Coaster")&& Option.equals("option1")){
+            Modifier-=20;
+        }
+        if(activeEvent.getName().equals("The Holy Coaster")&& Option.equals("option2")){
+
+        }
+        if(activeEvent.getName().equals("The Holy Coaster")&& Option.equals("option3")){
+
+        }
+
+        //------------------------------------------------------------------------------------------
+
+        if(activeEvent.getName().equals("Attacked by a rogue Squirrel")&& Option.equals("option1")){
+            Modifier+=30;
+        }
+        if(activeEvent.getName().equals("Attacked by a rogue Squirrel")&& Option.equals("option2")){
+            Modifier-=20;
+        }
+        if(activeEvent.getName().equals("Attacked by a rogue Squirrel")&& Option.equals("option3")){
+            Modifier-=20;
+        }
+
+        //------------------------------------------------------------------------------------------
+
+        if(activeEvent.getName().equals("Bandit attack")&& Option.equals("option1")){
+            Modifier-=10;
+        }
+        if(activeEvent.getName().equals("Bandit attack")&& Option.equals("option2")){
+
+        }
+        if(activeEvent.getName().equals("Bandit attack")&& Option.equals("option3")){
+            Modifier+=10;
+        }
+
+        //------------------------------------------------------------------------------------------
+
+        if(activeEvent.getName().equals("Attacked by the Evil Knight")&& Option.equals("option1")){
+            Modifier-=40;
+        }
+        if(activeEvent.getName().equals("Attacked by the Evil Knight")&& Option.equals("option2")){
+            Modifier-=20;
+        }
+        if(activeEvent.getName().equals("Attacked by the Evil Knight")&& Option.equals("option3")){
+            Modifier-=30;
+        }
+
+        //------------------------------------------------------------------------------------------
+
+        if(activeEvent.getName().equals("Attacked by a Swarm of Beetles")&& Option.equals("option1")){
+            String Weakness = Players[activeEvent.getLeadChar()].getWeakness();
+            Modifier-=10;
+            if(Weakness.equals("Insects")){
+                Modifier-=40;
+            }
+        }
+        if(activeEvent.getName().equals("Attacked by a Swarm of Beetles")&& Option.equals("option2")){
+            String Weakness = Players[activeEvent.getLeadChar()].getWeakness();
+            Modifier-=30;
+            if(Weakness.equals("Insects")){
+                Modifier-=20;
+            }
+        }
+        if(activeEvent.getName().equals("Attacked by a Swarm of Beetles")&& Option.equals("option3")){
+            Modifier+=20;
+        }
+
+        //------------------------------------------------------------------------------------------
+
+        if(activeEvent.getName().equals("Crossing the rope bridge")&& Option.equals("option1")){
+            String Race = Players[activeEvent.getLeadChar()].getRace();
+            String Weakness = Players[activeEvent.getLeadChar()].getWeakness();
+
+            if(Race.equals("Goblin")){
+                Modifier+=20;
+            }
+
+            if(Race.equals("Ogre")){
+                Modifier-=20;
+            }
+
+            if(Weakness.equals("Heights")){
+                Modifier-=70;
+            }
+        }
+        if(activeEvent.getName().equals("Crossing the rope bridge")&& Option.equals("option2")){
+            String Race = Players[activeEvent.getLeadChar()].getRace();
+
+            if(Race.equals("Ogre")){
+                Modifier+=20;
+            }
+
+        }
+        if(activeEvent.getName().equals("Crossing the rope bridge")&& Option.equals("option3")){
+            String PClass = Players[activeEvent.getLeadChar()].getCharclass();
+
+            if(PClass.equals("Cleric")){
+                Modifier+=20;
+            }
+
+            if(PClass.equals("Spiritualist")){
+                Modifier+=50;
+            }
+
+            if(!(PClass.equals("Cleric")||PClass.equals("Spiritualist"))){
+                Modifier-=50;
+            }
+        }
+
+        //------------------------------------------------------------------------------------------
+
+        if(activeEvent.getName().equals("Entering the Deep")&& Option.equals("option1")){
+            Modifier-=10;
+
+        }
+        if(activeEvent.getName().equals("Entering the Deep")&& Option.equals("option2")){
+            String PClass = Players[activeEvent.getLeadChar()].getCharclass();
+            Modifier+=20;
+            if(PClass.equals("Ranger")){
+                Modifier+=20;
+            }
+        }
+        if(activeEvent.getName().equals("Entering the Deep")&& Option.equals("option3")){
+            String Race = Players[activeEvent.getLeadChar()].getRace();
+
+            if(Race.equals("Changeling")){
+                Modifier+=20;
+            }
+        }
+
+        //------------------------------------------------------------------------------------------
+
+        if((rand+Modifier)>50){
             return "Pass";
         }else{
             return "Fail";
@@ -247,9 +611,9 @@ public class MainGamePresenter implements MainGameInterface.MainPresenterInterfa
 
 
         if(activeEvent.getName().equals("startingTown")&&PassOrFail.equals("Pass")){
-            newRes = "Everyone is Happy. All players drink "+LightDrink+".";
+            newRes = "The Party leaves optimistically. All players drink "+LightDrink+".";
         }else if(activeEvent.getName().equals("startingTown")&&PassOrFail.equals("Fail")) {
-            newRes = "Everyone is sad. All players drink "+MedDrink+".";
+            newRes = "The Party eventually leaves town after one final stop at the Tavern. All players drink "+MedDrink+".";
         }
         else if(activeEvent.getName().equals("Volcano")&&PassOrFail.equals("Pass") && Option.equals("option1")) {
             newRes = "You successfully navigated the volcano!";
@@ -264,17 +628,17 @@ public class MainGamePresenter implements MainGameInterface.MainPresenterInterfa
         }else if(activeEvent.getName().equals("Volcano")&&PassOrFail.equals("Fail") && Option.equals("option3")) {
             newRes = "You were gravely injured by the lava.  Take a double drink of healing potion!";
         }
-        else if(activeEvent.getName().equals("Ligtning Strike")&&PassOrFail.equals("Pass") && Option.equals("option1")) {
+        else if(activeEvent.getName().equals("Lightning Strike")&&PassOrFail.equals("Pass") && Option.equals("option1")) {
             newRes = "You just about avoided the lightning strikes, however it has drained your energy. You must drink "+MedDrink+" to feel well again.";
-        }else if(activeEvent.getName().equals("Ligtning Strike")&&PassOrFail.equals("Fail") && Option.equals("option1")) {
+        }else if(activeEvent.getName().equals("Lightning Strike")&&PassOrFail.equals("Fail") && Option.equals("option1")) {
             newRes = "You try and dodge the strikes but one hits you, take "+HeavyDrink+" drinks and you take time to recuperate.";
-        }else if(activeEvent.getName().equals("Ligtning Strike")&&PassOrFail.equals("Pass") && Option.equals("option2")) {
+        }else if(activeEvent.getName().equals("Lightning Strike")&&PassOrFail.equals("Pass") && Option.equals("option2")) {
             newRes = "You successfully craft a lightning rod and use it to shield yourself, feeling proud you take "+SingleDrink+" celebratory drink!";
-        }else if(activeEvent.getName().equals("Ligtning Strike")&&PassOrFail.equals("Fail") && Option.equals("option2")) {
+        }else if(activeEvent.getName().equals("Lightning Strike")&&PassOrFail.equals("Fail") && Option.equals("option2")) {
             newRes = "You craft the lighting rod but forget to attach it to anything, the lightning homes in on you! Take a drink of healing potion as you recover!";
-        }else if(activeEvent.getName().equals("Ligtning Strike")&&PassOrFail.equals("Pass") && Option.equals("option3")) {
+        }else if(activeEvent.getName().equals("Lightning Strike")&&PassOrFail.equals("Pass") && Option.equals("option3")) {
             newRes = "You manage to find an alternate route, all other party members take "+SingleDrink+" drink as the honour your success!";
-        }else if(activeEvent.getName().equals("Ligtning Strike")&&PassOrFail.equals("Fail") && Option.equals("option3")) {
+        }else if(activeEvent.getName().equals("Lightning Strike")&&PassOrFail.equals("Fail") && Option.equals("option3")) {
             newRes = "You are unable to find another route, eventually you head through the lightning field a day behind schedule.  You take "+SingleDrink+" embarressed drink for every other member of your party.";
         }
         else if(activeEvent.getName().equals("Rock Slide")&&PassOrFail.equals("Pass") && Option.equals("option1")) {
@@ -406,7 +770,7 @@ public class MainGamePresenter implements MainGameInterface.MainPresenterInterfa
             newRes = "While crossing the bridge suddenly snaps and you fall.  The whole party takes a drink of healing potion for your incompetance.";
         }else if(activeEvent.getName().equals("Crossing the rope bridge")&&PassOrFail.equals("Pass") && Option.equals("option2")) {
             newRes = "You climb down into the ravine. It is exhausting work.  Take "+LightDrink+" drinks to get your energy back.";
-        }else if(activeEvent.getName().equals("Crossing the rope bridges")&&PassOrFail.equals("Fail") && Option.equals("option2")) {
+        }else if(activeEvent.getName().equals("Crossing the rope bridge")&&PassOrFail.equals("Fail") && Option.equals("option2")) {
             newRes = "As you climb down into the ravine you slip. You manage to recover but it takes all your strength.  Take "+MedDrink+" drinks to get your energy back.";
         }else if(activeEvent.getName().equals("Crossing the rope bridge")&&PassOrFail.equals("Pass") && Option.equals("option3")) {
             newRes = "The spirits come to you and help keep the bridge up while you and your party cross.  The rush of summoning the spirits gives you the mysitcal power to give out "+MedDrink+" drinks between the other players.";

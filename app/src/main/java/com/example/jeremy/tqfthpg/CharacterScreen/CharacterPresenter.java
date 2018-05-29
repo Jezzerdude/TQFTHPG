@@ -48,8 +48,8 @@ public class CharacterPresenter implements CharacterInterface.presenterInterface
 
     @Override
     public String genSurName(String race) {
-        String[] LastNameArray = {"One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight"};
-        String[] LastNameDwarf = {"Dwarf1", "Dwarf2", "Dwarf3", "Dwarf4", "Dwarf5", "Dwarf6", "Dwarf7", "Dwarf8"};
+        String[] LastNameArray = {"Darksun", "Dragonreaper", "Serpentclaw", "Barleyweaver", "Lionbough", "Farsong", "Honorgem", "Skytalon"};
+        String[] LastNameDwarf = {"Stonehammer", "Ironjaw", "Rockbreaker", "Stonebeard", "Granitestone", "Hammerhand", "Ironhand", "StoneMason"};
         boolean used = false;
         int rand = (int) (Math.random() * ((7 - 0) + 1)) + 0;
         used = false;
@@ -111,7 +111,7 @@ public class CharacterPresenter implements CharacterInterface.presenterInterface
 
     @Override
     public String genClass() {
-        String[] ClassArray = {"Fighter", "Cleric", "Wizard", "Theif", "Tinkerer", "Spiritualist", "Ranger", "Cannoneer"};
+        String[] ClassArray = {"Fighter", "Cleric", "Wizard", "Thief", "Tinkerer", "Spiritualist", "Ranger", "Cannoneer"};
         boolean used = false;
         int rand = (int) (Math.random() * 8);
         used = false;

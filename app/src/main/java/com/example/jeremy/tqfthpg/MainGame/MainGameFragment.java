@@ -81,7 +81,46 @@ public class MainGameFragment extends Fragment implements MainGameInterface.Main
         Events[] gameEvents = presenter.getEvents(PlayerNo*2);
         PCharacter[] playerList = presenter.getPlayers(PlayerNo);
 
-        eventImg.setImageResource(R.drawable.arrow);
+        if(gameEvents[GameState].getName().equals("startingTown")){
+            eventImg.setImageResource(R.drawable.volcano);
+        }else if(gameEvents[GameState].getName().equals("Volcano")){
+            eventImg.setImageResource(R.drawable.volcano);
+        }else if(gameEvents[GameState].getName().equals("Lightning Strike")){
+            eventImg.setImageResource(R.drawable.volcano);
+        }else if(gameEvents[GameState].getName().equals("Rock Slide")){
+            eventImg.setImageResource(R.drawable.volcano);
+        }else if(gameEvents[GameState].getName().equals("Cliff walk")){
+            eventImg.setImageResource(R.drawable.volcano);
+        }else if(gameEvents[GameState].getName().equals("Bar Antics")){
+            eventImg.setImageResource(R.drawable.volcano);
+        }else if(gameEvents[GameState].getName().equals("The Djinn")){
+            eventImg.setImageResource(R.drawable.volcano);
+        }else if(gameEvents[GameState].getName().equals("The Holy Coaster")){
+            eventImg.setImageResource(R.drawable.volcano);
+        }else if(gameEvents[GameState].getName().equals("Attacked by a rogue Squirrel")){
+            eventImg.setImageResource(R.drawable.volcano);
+        }else if(gameEvents[GameState].getName().equals("Bandit attack")){
+            eventImg.setImageResource(R.drawable.volcano);
+        }else if(gameEvents[GameState].getName().equals("Attacked by the Evil Knight")){
+            eventImg.setImageResource(R.drawable.volcano);
+        }else if(gameEvents[GameState].getName().equals("Attacked by a Swarm of Beetles")){
+            eventImg.setImageResource(R.drawable.volcano);
+        }else if(gameEvents[GameState].getName().equals("Crossing the rope bridge")){
+            eventImg.setImageResource(R.drawable.volcano);
+        }else if(gameEvents[GameState].getName().equals("Entering the Deep")){
+            eventImg.setImageResource(R.drawable.volcano);
+        }else if(gameEvents[GameState].getName().equals("Injury")){
+            eventImg.setImageResource(R.drawable.volcano);
+        }else if(gameEvents[GameState].getName().equals("Sickness")){
+            eventImg.setImageResource(R.drawable.volcano);
+        }else if(gameEvents[GameState].getName().equals("Curse of the Platypus!")){
+            eventImg.setImageResource(R.drawable.volcano);
+        }else if(gameEvents[GameState].getName().equals("THPG!")){
+            eventImg.setImageResource(R.drawable.volcano);
+        }
+        else{
+            eventImg.setImageResource(R.drawable.arrow);
+        }
 
 
         if(gameEvents[GameState].getEventType().equals("Multiple")||gameEvents[GameState].getEventType().equals("SingleWithPlayer")) {

@@ -18,7 +18,7 @@ public interface MainGameInterface {
         void SaveEvents(Events[] events);
         void DeleteEvents();
         Events[] getEvents(int MaxEvents);
-        String rollResult(Events activeEvent);
+        String rollResult(Events activeEvent, String Option, PCharacter[] Players);
         void OverloadResult(Events activeEvent, String PassOrFail, String Option, String Difficulty);
     }
 

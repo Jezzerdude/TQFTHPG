@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainGame.MainGameFragment">
+    tools:context=".MainGame.MainGameFragment"
+    android:background="@color/colorMain">
 
     <!-- TODO: Update blank fragment layout -->
     <ImageView
