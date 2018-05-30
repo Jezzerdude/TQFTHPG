@@ -51,5 +51,6 @@ public class MainGameLoadingScreenActivity extends AppCompatActivity implements 
 
         Intent intent = new Intent(this, MainGameActivity.class);
         startActivity(intent);
+        finish();
     }
 }
