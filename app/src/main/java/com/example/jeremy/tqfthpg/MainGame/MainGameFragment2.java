@@ -65,8 +65,9 @@ public class MainGameFragment2 extends Fragment implements MainGameInterface.Mai
         int GameState = app_pref.getInt("State",0);
         String OptionSelected = app_pref.getString("OptionSelected","option1");
         String Difficulty = app_pref.getString("Difficulty", "Null");
+        int EventsNeeded = app_pref.getInt("EventsNeeded",0);
 
-        Events[] gameEvents = presenter.getEvents(PlayerNo*2);
+        Events[] gameEvents = presenter.getEvents(EventsNeeded);
 
         if(gameEvents[GameState].getName().equals("startingTown")){
             eventImg.setImageResource(R.drawable.starttown);

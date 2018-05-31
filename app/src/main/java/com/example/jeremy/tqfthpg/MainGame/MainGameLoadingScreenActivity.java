@@ -32,10 +32,11 @@ public class MainGameLoadingScreenActivity extends AppCompatActivity implements 
 
         app_pref = PreferenceManager.getDefaultSharedPreferences(this);
         int PlayerNo = Integer.parseInt(app_pref.getString("PlayerNo", "Null"));
+        int EventsNeeded = app_pref.getInt("EventsNeeded",0);
 
         PCharacter[] players = presenter.getPlayers(PlayerNo);
 
-        final Events[] listOfEvents = presenter.AddEvents(players);
+        final Events[] listOfEvents = presenter.AddEvents(players,EventsNeeded);
 
         editor = app_pref.edit();
         editor.putInt("noOfEvents", listOfEvents.length).apply();

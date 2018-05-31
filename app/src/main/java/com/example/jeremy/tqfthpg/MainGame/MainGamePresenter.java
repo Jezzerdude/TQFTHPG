@@ -29,16 +29,11 @@ public class MainGamePresenter implements MainGameInterface.MainPresenterInterfa
     }
 
     @Override
-    public Fragment GetSpecificEvent(Events event) {
-        return null;
-    }
-
-    @Override
-    public Events[] AddEvents(PCharacter[] players) {
+    public Events[] AddEvents(PCharacter[] players,int EventsNeeded) {
         Events[] eventList = new Events[18];
         int MaxPlayers = players.length;
-        Events[] questList = new Events[MaxPlayers*2];
-        int[] Leads= GenLeadChar(MaxPlayers);
+        Events[] questList = new Events[EventsNeeded];
+        int[] Leads= GenLeadChar(MaxPlayers, EventsNeeded);
 
 
         Events startingTown = new Events(0,"startingTown","Single","R.drawable.volcano","You Leave the town to start your adventure!","Travel onwards: ",players[0].getId(),"");
@@ -112,10 +107,10 @@ public class MainGamePresenter implements MainGameInterface.MainPresenterInterfa
                 Counter++;
             }else if(i==(questList.length-1)){
                 questList[i]=eventList[17];
-                questList[i].setLeadChar(Leads[i]);
+                questList[i].setLeadChar(Leads[i-2]);
                 questList[i].setEventId(i);
             }else if(!used){
-                eventList[rand].setLeadChar(Leads[i]);
+                eventList[rand].setLeadChar(Leads[i-1]);
                 eventList[rand].setEventId(i);
                 questList[i]=eventList[rand];
                 UsedEvents[Counter] = rand;
@@ -144,8 +139,8 @@ public class MainGamePresenter implements MainGameInterface.MainPresenterInterfa
     }
 
     @Override
-    public int[] GenLeadChar(int PlayerNo) {
-        int[] leadCharsList = new int[PlayerNo*2];
+    public int[] GenLeadChar(int PlayerNo, int EventsNeeded) {
+        int[] leadCharsList = new int[EventsNeeded-2];
         int[] CharsPerEvent = new int[PlayerNo];
         int Temp = PlayerNo;
 

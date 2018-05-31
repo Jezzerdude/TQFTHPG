@@ -77,8 +77,9 @@ public class MainGameFragment extends Fragment implements MainGameInterface.Main
         int PlayerNo = Integer.parseInt(app_pref.getString("PlayerNo", "Null"));
         String Difficulty = app_pref.getString("Difficulty", "Null");
         int GameState = app_pref.getInt("State",0);
+        int EventsNeeded = app_pref.getInt("EventsNeeded",0);
 
-        Events[] gameEvents = presenter.getEvents(PlayerNo*2);
+        Events[] gameEvents = presenter.getEvents(EventsNeeded);
         PCharacter[] playerList = presenter.getPlayers(PlayerNo);
 
         if(gameEvents[GameState].getName().equals("startingTown")){

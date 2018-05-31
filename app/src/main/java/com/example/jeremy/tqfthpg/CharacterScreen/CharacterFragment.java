@@ -68,6 +68,8 @@ public class CharacterFragment extends Fragment implements CharacterInterface.vi
         editor = app_pref.edit();
         editor.putInt("State", state).apply();
         editor.putInt("Result", result).apply();
+        int eventSize = (PlayerChars.length*2)+2;
+        editor.putInt("EventsNeeded", eventSize).apply();
 
 
         //------------------------------------------------------------------------------------------

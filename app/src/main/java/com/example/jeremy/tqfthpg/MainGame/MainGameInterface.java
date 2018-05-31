@@ -11,10 +11,9 @@ public interface MainGameInterface {
     interface MainPresenterInterface{
         MainGameFragment getFragment();
         MainGameFragment2 getFragment2();
-        Fragment GetSpecificEvent(Events event);
-        Events[] AddEvents(PCharacter[] players);
+        Events[] AddEvents(PCharacter[] players, int EventsNeeded);
         PCharacter[] getPlayers(int PlayerNo);
-        int[] GenLeadChar(int PlayerNo);
+        int[] GenLeadChar(int PlayerNo, int EventsNeeded);
         void SaveEvents(Events[] events);
         void DeleteEvents();
         Events[] getEvents(int MaxEvents);
