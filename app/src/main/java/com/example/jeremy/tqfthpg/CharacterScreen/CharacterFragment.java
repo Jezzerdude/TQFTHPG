@@ -54,9 +54,6 @@ public class CharacterFragment extends Fragment implements CharacterInterface.vi
         ((AppInitiliser) getActivity().getApplication()).getAppInjectorDependencyComponent().inject(this);
         app_pref = PreferenceManager.getDefaultSharedPreferences(view.getContext());
         String PlayerNo = app_pref.getString("PlayerNo", "Null");
-        String Difficulty = app_pref.getString("Difficulty", "Null");
-        //Toast.makeText(view.getContext(), "Players "+PlayerNo, Toast.LENGTH_SHORT).show();
-        //Toast.makeText(view.getContext(), "Dif "+Difficulty, Toast.LENGTH_SHORT).show();
 
         String[] firstnames = new String[Integer.parseInt(PlayerNo)];
         for(int i =0;i<Integer.parseInt(PlayerNo);i++){
@@ -97,6 +94,7 @@ public class CharacterFragment extends Fragment implements CharacterInterface.vi
             public void onClick(View view) {
                 Intent intent = new Intent(getView().getContext(), MainGameLoadingScreenActivity.class);
                 startActivity(intent);
+                getActivity().finish();
             }
         });
 
