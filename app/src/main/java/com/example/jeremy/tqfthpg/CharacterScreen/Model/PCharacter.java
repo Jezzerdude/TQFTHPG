@@ -11,6 +11,8 @@ public class PCharacter extends RealmObject {
     private String Fullname;
     private String Weakness;
     private String Description;
+    private int TotalDrinks = 0;
+    private int TotalShots = 0;
 
     public PCharacter() {
     }
@@ -88,6 +90,22 @@ public class PCharacter extends RealmObject {
 
     public void setDescription(String description) {
         Description = description;
+    }
+
+    public int getTotalDrinks() {
+        return TotalDrinks;
+    }
+
+    public void setTotalDrinks(int totalDrinks) {
+        TotalDrinks = totalDrinks;
+    }
+
+    public int getTotalShots() {
+        return TotalShots;
+    }
+
+    public void setTotalShots(int totalShots) {
+        TotalShots = totalShots;
     }
 }
 

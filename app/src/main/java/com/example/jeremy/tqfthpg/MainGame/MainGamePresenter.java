@@ -14,7 +14,6 @@ public class MainGamePresenter implements MainGameInterface.MainPresenterInterfa
     private MainGameFragment mainGameFrag;
     private MainGameFragment2 mainGameFrag2;
     Realm realm;
-    private int[] UsedEvents = new int[16];
 
     @Override
     public MainGameFragment getFragment() {
@@ -34,7 +33,7 @@ public class MainGamePresenter implements MainGameInterface.MainPresenterInterfa
         int MaxPlayers = players.length;
         Events[] questList = new Events[EventsNeeded];
         int[] Leads= GenLeadChar(MaxPlayers, EventsNeeded);
-
+        int[] UsedEvents = new int[EventsNeeded];
 
         Events startingTown = new Events(0,"startingTown","Single","R.drawable.volcano","You Leave the town to start your adventure!","Travel onwards: ",players[0].getId(),"");
         Events volcano = new Events(1,"Volcano","Multiple","@drawable/volcano","A towering Volcano appears before you. As you trek down the ssulfurous path you are blocked by a stream of lava. What will you do?","Build a bridge: ","Climb around it: ","Jump the lava: ",players[0].getId(),"","NA");
@@ -54,7 +53,6 @@ public class MainGamePresenter implements MainGameInterface.MainPresenterInterfa
         Events Injury = new Events(18,"Injury","SingleWithPlayer","@drawable/volcano","you have taken a crippling Injury.","Someone help me!: ",players[0].getId(),"Drink! 6");
         Events Sickness = new Events(18,"Sickness","SingleWithPlayer","@drawable/volcano","you appear to have gone down with a nasty sickness.","Consult the medical manual: ",players[0].getId(),"Drink! 6");
         Events CurseOfThePlatypus = new Events(18,"Curse of the Platypus!","SingleWithPlayer","@drawable/volcano","you seem to have been afflicted with the dreaded Curse of the Platypus!  You have been transformed into a Platypus.","Somebody do something! ",players[0].getId(),"Drink! 6");
-
 
         Events THPG = new Events(18,"THPG!","Single","@drawable/volcano","The Holy Pint Glass stands before you!","Take the grail: ",players[0].getId(),"Drink! 6");
 
@@ -580,7 +578,7 @@ public class MainGamePresenter implements MainGameInterface.MainPresenterInterfa
     }
 
     @Override
-    public void OverloadResult(Events activeEvent, String PassOrFail, String Option, String Difficulty) {
+    public void OverloadResult(Events activeEvent, String PassOrFail, String Option, String Difficulty,PCharacter Player, PCharacter[] Players) {
         String newRes;
         String SingleDrink;
         String LightDrink;
@@ -604,99 +602,136 @@ public class MainGamePresenter implements MainGameInterface.MainPresenterInterfa
             HeavyDrink = Integer.toString(8);
         }
 
-
         if(activeEvent.getName().equals("startingTown")&&PassOrFail.equals("Pass")){
             newRes = "The Party leaves optimistically. All players drink "+LightDrink+".";
+            AddDrinksToAllPlayers(Players, Integer.parseInt(LightDrink));
         }else if(activeEvent.getName().equals("startingTown")&&PassOrFail.equals("Fail")) {
             newRes = "The Party eventually leaves town after one final stop at the Tavern. All players drink "+MedDrink+".";
+            AddDrinksToAllPlayers(Players, Integer.parseInt(MedDrink));
         }
         else if(activeEvent.getName().equals("Volcano")&&PassOrFail.equals("Pass") && Option.equals("option1")) {
             newRes = "You successfully navigated the volcano!";
         }else if(activeEvent.getName().equals("Volcano")&&PassOrFail.equals("Fail") && Option.equals("option1")) {
             newRes = "You made it past the volcano but took some nasty burns, take a drink of healing potion.";
+            AddShotsToPlayer(Player,1);
         }else if(activeEvent.getName().equals("Volcano")&&PassOrFail.equals("Pass") && Option.equals("option2")) {
             newRes = "You just barely navigated the volcano, take "+SingleDrink+" drink.";
+            AddDrinksToPlayer(Player,Integer.parseInt(SingleDrink));
         }else if(activeEvent.getName().equals("Volcano")&&PassOrFail.equals("Fail") && Option.equals("option2")) {
             newRes = "You slip on the rock and bang your knee, drink "+MedDrink+" drinks.";
+            AddDrinksToPlayer(Player,Integer.parseInt(MedDrink));
         }else if(activeEvent.getName().equals("Volcano")&&PassOrFail.equals("Pass") && Option.equals("option3")) {
             newRes = "You heroically navigated the volcano, give out "+SingleDrink+" drink!";
         }else if(activeEvent.getName().equals("Volcano")&&PassOrFail.equals("Fail") && Option.equals("option3")) {
             newRes = "You were gravely injured by the lava.  Take a double drink of healing potion!";
+            AddShotsToPlayer(Player,2);
         }
         else if(activeEvent.getName().equals("Lightning Strike")&&PassOrFail.equals("Pass") && Option.equals("option1")) {
             newRes = "You just about avoided the lightning strikes, however it has drained your energy. You must drink "+MedDrink+" to feel well again.";
+            AddDrinksToPlayer(Player,Integer.parseInt(MedDrink));
         }else if(activeEvent.getName().equals("Lightning Strike")&&PassOrFail.equals("Fail") && Option.equals("option1")) {
             newRes = "You try and dodge the strikes but one hits you, take "+HeavyDrink+" drinks and you take time to recuperate.";
+            AddDrinksToPlayer(Player,Integer.parseInt(HeavyDrink));
         }else if(activeEvent.getName().equals("Lightning Strike")&&PassOrFail.equals("Pass") && Option.equals("option2")) {
             newRes = "You successfully craft a lightning rod and use it to shield yourself, feeling proud you take "+SingleDrink+" celebratory drink!";
+            AddDrinksToPlayer(Player,Integer.parseInt(SingleDrink));
         }else if(activeEvent.getName().equals("Lightning Strike")&&PassOrFail.equals("Fail") && Option.equals("option2")) {
             newRes = "You craft the lighting rod but forget to attach it to anything, the lightning homes in on you! Take a drink of healing potion as you recover!";
+            AddShotsToPlayer(Player,1);
         }else if(activeEvent.getName().equals("Lightning Strike")&&PassOrFail.equals("Pass") && Option.equals("option3")) {
             newRes = "You manage to find an alternate route, all other party members take "+SingleDrink+" drink as the honour your success!";
+            AddDrinksToAllPlayers(Players, Integer.parseInt(SingleDrink));
+            AddDrinksToPlayer(Player,Integer.parseInt(SingleDrink)*-1);
         }else if(activeEvent.getName().equals("Lightning Strike")&&PassOrFail.equals("Fail") && Option.equals("option3")) {
             newRes = "You are unable to find another route, eventually you head through the lightning field a day behind schedule.  You take "+SingleDrink+" embarressed drink for every other member of your party.";
+            AddDrinksToPlayer(Player,Integer.parseInt(SingleDrink)*(Players.length-1));
         }
         else if(activeEvent.getName().equals("Rock Slide")&&PassOrFail.equals("Pass") && Option.equals("option1")) {
             newRes = "You dodge the big rocks although some small rocks still clip you, take "+LightDrink+" drinks.";
+            AddDrinksToPlayer(Player,Integer.parseInt(LightDrink));
         }else if(activeEvent.getName().equals("Rock Slide")&&PassOrFail.equals("Fail") && Option.equals("option1")) {
             newRes = "You fail to dodge the rocks and are knocked unconcious.  You awake with a nasty headache, take "+HeavyDrink+" drinks to feel better.";
+            AddDrinksToPlayer(Player,Integer.parseInt(HeavyDrink));
         }else if(activeEvent.getName().equals("Rock Slide")&&PassOrFail.equals("Pass") && Option.equals("option2")) {
             newRes = "The Rocks are no match for you! You smash them aside.  Your impressed party members all take "+MedDrink+" drinks!";
+            AddDrinksToAllPlayers(Players, Integer.parseInt(MedDrink));
+            AddDrinksToPlayer(Player,Integer.parseInt(MedDrink)*-1);
         }else if(activeEvent.getName().equals("Rock Slide")&&PassOrFail.equals("Fail") && Option.equals("option2")) {
             newRes = "The rocks get the better of you and you are hit squarly in the face.  Take "+LightDrink+" drinks and a drink of healing potion.";
+            AddDrinksToPlayer(Player,Integer.parseInt(LightDrink));
+            AddShotsToPlayer(Player,1);
         }else if(activeEvent.getName().equals("Rock Slide")&&PassOrFail.equals("Pass") && Option.equals("option3")) {
             newRes = "You manage to take cover. Most of the rocks miss you and you make it out with only a few scratches.  Take "+SingleDrink+" drink.";
+            AddDrinksToPlayer(Player,Integer.parseInt(SingleDrink));
         }else if(activeEvent.getName().equals("Rock Slide")&&PassOrFail.equals("Fail") && Option.equals("option3")) {
             newRes = "Your cover collapses on top of you!  Take "+HeavyDrink+" drinks!";
+            AddDrinksToPlayer(Player,Integer.parseInt(HeavyDrink));
         }
         else if(activeEvent.getName().equals("Cliff walk")&&PassOrFail.equals("Pass") && Option.equals("option1")) {
             newRes = "You manage to scuttle around the edge of the cliff, no drinks for you!";
         }else if(activeEvent.getName().equals("Cliff walk")&&PassOrFail.equals("Fail") && Option.equals("option1")) {
             newRes = "You fall off the cliff, your companion grabs you but you both fall together.  You and the player to your left drinks "+MedDrink+".";
+            AddDrinksToPlayer(Player,Integer.parseInt(MedDrink));
         }else if(activeEvent.getName().equals("Cliff walk")&&PassOrFail.equals("Pass") && Option.equals("option2")) {
             newRes = "You tunnel through the cliff and arrive at your destination.  Well done!";
         }else if(activeEvent.getName().equals("Cliff walk")&&PassOrFail.equals("Fail") && Option.equals("option2")) {
             newRes = "You fail to tunnel into the rock. Your unimpressed party give you distasteful looks.  Drink "+MedDrink+".";
+            AddDrinksToPlayer(Player,Integer.parseInt(MedDrink));
         }else if(activeEvent.getName().equals("Cliff walk")&&PassOrFail.equals("Pass") && Option.equals("option3")) {
             newRes = "You find an alternate route!  One of your party is unimpressed however.  The player to the right of you drinks "+LightDrink+".";
         }else if(activeEvent.getName().equals("Cliff walk")&&PassOrFail.equals("Fail") && Option.equals("option3")) {
             newRes = "You fail to find an alternate route.  Drink "+MedDrink+".";
+            AddDrinksToPlayer(Player,Integer.parseInt(MedDrink));
         }
         else if(activeEvent.getName().equals("Bar Antics")&&PassOrFail.equals("Pass") && Option.equals("option1")) {
             newRes = "You order a few drinks for you and your party.  All Players drink "+LightDrink+".";
+            AddDrinksToAllPlayers(Players,Integer.parseInt(LightDrink));
         }else if(activeEvent.getName().equals("Bar Antics")&&PassOrFail.equals("Fail") && Option.equals("option1")) {
             newRes = "You order a few drinks, then a few more, then a few more.  At the end of the evening your tab comes through.  Horrified by the amount of money you have to pay you resort to getting drunk again: drink "+HeavyDrink+".";
+            AddDrinksToPlayer(Player,Integer.parseInt(HeavyDrink));
         }else if(activeEvent.getName().equals("Bar Antics")&&PassOrFail.equals("Pass") && Option.equals("option2")) {
             newRes = "You win the round and use the money to buy drinks for your fellow party members!  All players other than you drink "+LightDrink+".";
+            AddDrinksToAllPlayers(Players, Integer.parseInt(LightDrink));
+            AddDrinksToPlayer(Player,Integer.parseInt(LightDrink)*-1);
         }else if(activeEvent.getName().equals("Bar Antics")&&PassOrFail.equals("Fail") && Option.equals("option2")) {
             newRes = "You lose the round and have to buy drinks for the table.  Drink "+MedDrink+".";
+            AddDrinksToPlayer(Player,Integer.parseInt(MedDrink));
         }else if(activeEvent.getName().equals("Bar Antics")&&PassOrFail.equals("Pass") && Option.equals("option3")) {
             newRes = "The locals take to your charms and pay for your drinks! drink "+LightDrink+".";
+            AddDrinksToPlayer(Player,Integer.parseInt(LightDrink));
         }else if(activeEvent.getName().equals("Bar Antics")&&PassOrFail.equals("Fail") && Option.equals("option3")) {
             newRes = "The locals do not treat you kindly and you are kicked out of the tavern with some nasty bruises!  Take a drink of healing potion to recover.";
+            AddShotsToPlayer(Player,1);
         }
         else if(activeEvent.getName().equals("The Djinn")&&PassOrFail.equals("Pass") && Option.equals("option1")) {
             newRes = "You feel extremely powerful.  With your new power you may nominate another player to drink "+HeavyDrink+"!";
         }else if(activeEvent.getName().equals("The Djinn")&&PassOrFail.equals("Fail") && Option.equals("option1")) {
             newRes = "Power comes at a cost... You suddenly feel powerful but also... thirsty... drink "+HeavyDrink+".";
+            AddDrinksToPlayer(Player,Integer.parseInt(HeavyDrink));
         }else if(activeEvent.getName().equals("The Djinn")&&PassOrFail.equals("Pass") && Option.equals("option2")) {
             newRes = "The Djinn grants you wealth beyond your wildest dreams.  You immediately spend it all on a golden statue and Alcohol.  Everyone drinks "+HeavyDrink+" in celebration!  Also you have a golden statue!";
+            AddDrinksToAllPlayers(Players,Integer.parseInt(HeavyDrink));
         }else if(activeEvent.getName().equals("The Djinn")&&PassOrFail.equals("Fail") && Option.equals("option2")) {
             newRes = "The Djinn grants you wealth beyond your wildest dreams. Unfortunately the money is cursed! Every coin you spend makes you more thristy... Take "+SingleDrink+" drink for every future Event that you are not leading!";
         }else if(activeEvent.getName().equals("The Djinn")&&PassOrFail.equals("Pass") && Option.equals("option3")) {
             newRes = "Your wish has been recieved! Drink "+MedDrink+".";
+            AddDrinksToPlayer(Player,Integer.parseInt(MedDrink));
         }else if(activeEvent.getName().equals("The Djinn")&&PassOrFail.equals("Fail") && Option.equals("option3")) {
-            newRes = "The Djinn is upset and feels you have wasted your wish.  He strikes out at you then dissappears.  Take "+SingleDrink+" drink of health potion.";
+            newRes = "The Djinn is upset and feels you have wasted your wish.  He strikes out at you then disappears.  Take "+SingleDrink+" drink of health potion.";
+            AddShotsToPlayer(Player,Integer.parseInt(SingleDrink));
         }
 
         else if(activeEvent.getName().equals("The Holy Coaster")&&PassOrFail.equals("Pass") && Option.equals("option1")) {
             newRes = "The power of the coaster activates and all players find a ready drink in their hands!  All Players drink "+HeavyDrink+".";
+            AddDrinksToAllPlayers(Players,Integer.parseInt(HeavyDrink));
         }else if(activeEvent.getName().equals("The Holy Coaster")&&PassOrFail.equals("Fail") && Option.equals("option1")) {
             newRes = "You try and activate the coaster... but nothing happens.  Maybe the rumors were false, maybe it ran out of power long ago. Drink "+MedDrink+" in frustration!";
+            AddDrinksToPlayer(Player,Integer.parseInt(MedDrink));
         }else if(activeEvent.getName().equals("The Holy Coaster")&&PassOrFail.equals("Pass") && Option.equals("option2")) {
             newRes = "You keep the coaster, maybe it will bring you luck!.";
         }else if(activeEvent.getName().equals("The Holy Coaster")&&PassOrFail.equals("Fail") && Option.equals("option2")) {
             newRes = "You go to sleep one night only to wake the next morning and find the coaster missing! It seems it was cursed and you now feel incredibly thirsty. Drink "+HeavyDrink+" to quench your thirst!";
+            AddDrinksToPlayer(Player,Integer.parseInt(HeavyDrink));
         }else if(activeEvent.getName().equals("The Holy Coaster")&&PassOrFail.equals("Pass") && Option.equals("option3")) {
             newRes = "Probably best not to risk the Coaster being cursed. You Discard it!";
         }else if(activeEvent.getName().equals("The Holy Coaster")&&PassOrFail.equals("Fail") && Option.equals("option3")) {
@@ -705,100 +740,130 @@ public class MainGamePresenter implements MainGameInterface.MainPresenterInterfa
 
         else if(activeEvent.getName().equals("Attacked by a rogue Squirrel")&&PassOrFail.equals("Pass") && Option.equals("option1")) {
             newRes = "You successfully fight off the squirrel... you monster, take "+LightDrink+" drinks for animal cruelty!";
+            AddDrinksToPlayer(Player,Integer.parseInt(LightDrink));
         }else if(activeEvent.getName().equals("Attacked by a rogue Squirrel")&&PassOrFail.equals("Fail") && Option.equals("option1")) {
             newRes = "You are defeated by a squirrel... take two drinks of healing potion.  The rest of the party may opt to pity you by taking "+SingleDrink+" drink, if any of them do you must feel ashamed.";
+            AddShotsToPlayer(Player,2);
         }else if(activeEvent.getName().equals("Attacked by a rogue Squirrel")&&PassOrFail.equals("Pass") && Option.equals("option2")) {
             newRes = "Event though the squirrel can't talk it seems to respond to your words and stops its attack. The squirrel joins you as a friendly companion";
         }else if(activeEvent.getName().equals("Attacked by a rogue Squirrel")&&PassOrFail.equals("Fail") && Option.equals("option2")) {
             newRes = "The squirrel takes no notice of you and gives you a few minor scratches.  Take "+LightDrink+" drinks to try and ignore the feelings of pain.";
+            AddDrinksToPlayer(Player,Integer.parseInt(LightDrink));
         }else if(activeEvent.getName().equals("Attacked by a rogue Squirrel")&&PassOrFail.equals("Pass") && Option.equals("option3")) {
-            newRes = "You look ridiculous, but you escape the squirrel unharmed. No drinks for you."+SingleDrink+" drink!";
+            newRes = "You look ridiculous, but you escape the squirrel unharmed. No drinks for you.";
         }else if(activeEvent.getName().equals("Attacked by a rogue Squirrel")&&PassOrFail.equals("Fail") && Option.equals("option3")) {
             newRes = "The squirrel chases you down and gives you a nasty scratch, Take "+LightDrink+" drinks to try and ignore the feelings of pain.";
+            AddDrinksToPlayer(Player,Integer.parseInt(LightDrink));
         }
 
         else if(activeEvent.getName().equals("Bandit attack")&&PassOrFail.equals("Pass") && Option.equals("option1")) {
             newRes = "You successfully fight off the bandits. Huzzah!";
         }else if(activeEvent.getName().equals("Bandit attack")&&PassOrFail.equals("Fail") && Option.equals("option1")) {
             newRes = "You are defeated by the bandits.  As they are taking your equipment you are saved by Sir Chaworth-Musters! He insists you take a drink of healing potion for your wounds before leaving you and continuing his journey.  What a guy!";
+            AddShotsToPlayer(Player,1);
         }else if(activeEvent.getName().equals("Bandit attack")&&PassOrFail.equals("Pass") && Option.equals("option2")) {
             newRes = "You offer the bandits a trade and they accept, somehow you actually come out on top having gained a large amount of alcohol.  You and two fellow party members of your choice drink "+MedDrink+" in celebration of the plentiful booze!";
+            AddDrinksToPlayer(Player,Integer.parseInt(MedDrink));
         }else if(activeEvent.getName().equals("Bandit attack")&&PassOrFail.equals("Fail") && Option.equals("option2")) {
             newRes = "There is no negotiation to be had. The bandits attack you and you injure yourself fighting them off. Take a drink of healing potion to recover.";
+            AddShotsToPlayer(Player,1);
         }else if(activeEvent.getName().equals("Bandit attack")&&PassOrFail.equals("Pass") && Option.equals("option3")) {
             newRes = "You manage to escape the bandits.";
         }else if(activeEvent.getName().equals("Bandit attack")&&PassOrFail.equals("Fail") && Option.equals("option3")) {
-            newRes = "The Bandits catch you but appear to be warn out.  You fight them off and take "+LightDrink+" drinks in order to recouperate";
+            newRes = "The Bandits catch you but appear to be warn out.  You fight them off and take "+LightDrink+" drinks in order to recuperate";
+            AddDrinksToPlayer(Player,Integer.parseInt(LightDrink));
         }
 
         else if(activeEvent.getName().equals("Attacked by the Evil Knight")&&PassOrFail.equals("Pass") && Option.equals("option1")) {
-            newRes = "Victory, you first cut off his arms, then his legs.  After threatening to bite you to death you take his head.  He will bother no-one again!";
+            newRes = "Victory, you first cut off his arms, then his legs.  After threatening to bite you to death you take his head!  He will bother no-one again!";
         }else if(activeEvent.getName().equals("Attacked by the Evil Knight")&&PassOrFail.equals("Fail") && Option.equals("option1")) {
             newRes = "None escape the Black Knight! You are left mortally wounded and must take 2 drinks of healing potion to recover.";
+            AddShotsToPlayer(Player,2);
         }else if(activeEvent.getName().equals("Attacked by the Evil Knight")&&PassOrFail.equals("Pass") && Option.equals("option2")) {
             newRes = "The Black Knight hears your negotiation.  In the end he forces you to drink "+HeavyDrink+" drinks in his honour.  You think you may have gotten off lucky.";
+            AddDrinksToPlayer(Player,Integer.parseInt(HeavyDrink));
         }else if(activeEvent.getName().equals("Attacked by the Evil Knight")&&PassOrFail.equals("Fail") && Option.equals("option2")) {
             newRes = "The Black Knight does not negotiate! You are left mortally wounded and must take 2 drinks of healing potion to recover.";
+            AddShotsToPlayer(Player,2);
         }else if(activeEvent.getName().equals("Attacked by the Evil Knight")&&PassOrFail.equals("Pass") && Option.equals("option3")) {
             newRes = "You manage to escape the Black Knight.  That was close!";
         }else if(activeEvent.getName().equals("Attacked by the Evil Knight")&&PassOrFail.equals("Fail") && Option.equals("option3")) {
             newRes = "None escape the Black Knight! You are left mortally wounded and must take 2 drinks of healing potion to recover.";
+            AddShotsToPlayer(Player,2);
         }
 
         else if(activeEvent.getName().equals("Attacked by a Swarm of Beetles")&&PassOrFail.equals("Pass") && Option.equals("option1")) {
             newRes = "You fight off the swarm.  They are no match for your might!";
         }else if(activeEvent.getName().equals("Attacked by a Swarm of Beetles")&&PassOrFail.equals("Fail") && Option.equals("option1")) {
             newRes = "You are overpowered by the swarm. Drink 1 drink of healing potion to recover.";
+            AddShotsToPlayer(Player,1);
         }else if(activeEvent.getName().equals("Attacked by a Swarm of Beetles")&&PassOrFail.equals("Pass") && Option.equals("option2")) {
             newRes = "Your words affect the swarm in a way none would have thought possible.  The swarm leaves you alone.";
         }else if(activeEvent.getName().equals("Attacked by a Swarm of Beetles")&&PassOrFail.equals("Fail") && Option.equals("option2")) {
             newRes = "The swarm ignores your pleas and attacks.  You are injured and must drink "+MedDrink+" to recover from your wounds.";
+            AddDrinksToPlayer(Player,Integer.parseInt(MedDrink));
         }else if(activeEvent.getName().equals("Attacked by a Swarm of Beetles")&&PassOrFail.equals("Pass") && Option.equals("option3")) {
             newRes = "You manage to escape the swarm.";
         }else if(activeEvent.getName().equals("Attacked by a Swarm of Beetles")&&PassOrFail.equals("Fail") && Option.equals("option3")) {
             newRes = "You cannot escape the swarm. They attack and you are injured and must drink "+MedDrink+" to recover from your wounds";
+            AddDrinksToPlayer(Player,Integer.parseInt(MedDrink));
         }
 
         else if(activeEvent.getName().equals("Crossing the rope bridge")&&PassOrFail.equals("Pass") && Option.equals("option1")) {
             newRes = "You cross the bridge without worry.  It turns out the bridge was sturdier than it looked.";
         }else if(activeEvent.getName().equals("Crossing the rope bridge")&&PassOrFail.equals("Fail") && Option.equals("option1")) {
-            newRes = "While crossing the bridge suddenly snaps and you fall.  The whole party takes a drink of healing potion for your incompetance.";
+            newRes = "While crossing the bridge suddenly snaps and you fall.  The whole party takes a drink of healing potion for your incompetence.";
+            AddShotsToAllPlayers(Players, 1);
         }else if(activeEvent.getName().equals("Crossing the rope bridge")&&PassOrFail.equals("Pass") && Option.equals("option2")) {
             newRes = "You climb down into the ravine. It is exhausting work.  Take "+LightDrink+" drinks to get your energy back.";
+            AddDrinksToPlayer(Player,Integer.parseInt(LightDrink));
         }else if(activeEvent.getName().equals("Crossing the rope bridge")&&PassOrFail.equals("Fail") && Option.equals("option2")) {
             newRes = "As you climb down into the ravine you slip. You manage to recover but it takes all your strength.  Take "+MedDrink+" drinks to get your energy back.";
+            AddDrinksToPlayer(Player,Integer.parseInt(MedDrink));
         }else if(activeEvent.getName().equals("Crossing the rope bridge")&&PassOrFail.equals("Pass") && Option.equals("option3")) {
             newRes = "The spirits come to you and help keep the bridge up while you and your party cross.  The rush of summoning the spirits gives you the mysitcal power to give out "+MedDrink+" drinks between the other players.";
         }else if(activeEvent.getName().equals("Crossing the rope bridge")&&PassOrFail.equals("Fail") && Option.equals("option3")) {
             newRes = "The spirits do not answer your call. Disappointed you take "+HeavyDrink+" drinks and cross the bridge... which then breaks, once you have finished your drinks take a drink of healing potion.";
+            AddDrinksToPlayer(Player,Integer.parseInt(HeavyDrink));
         }
 
         else if(activeEvent.getName().equals("Entering the Deep")&&PassOrFail.equals("Pass") && Option.equals("option1")) {
             newRes = "You make your way through the Deep.  You encounter no obstacles in your path.  Rumors of the Deep's danger may have been exaggerated.";
         }else if(activeEvent.getName().equals("Entering the Deep")&&PassOrFail.equals("Fail") && Option.equals("option1")) {
             newRes = "You lead your party down into the Deep.  Inside you are attacked by unspeakable horrors.  Take a drink of healing potion.  The rest of your party must take "+MedDrink+" drinks as they try and forget what they have seen.";
+            AddShotsToPlayer(Player,1);
+            AddDrinksToAllPlayers(Players,Integer.parseInt(MedDrink));
+            AddDrinksToPlayer(Player,Integer.parseInt(MedDrink)*-1);
         }else if(activeEvent.getName().equals("Entering the Deep")&&PassOrFail.equals("Pass") && Option.equals("option2")) {
             newRes = "You decide to find a safer route.  It will be longer but safer! Take "+MedDrink+" to represent the supplies lost by the extra travel time.";
+            AddDrinksToPlayer(Player,Integer.parseInt(MedDrink));
         }else if(activeEvent.getName().equals("Entering the Deep")&&PassOrFail.equals("Fail") && Option.equals("option2")) {
             newRes = "Your search for a safer route takes an extra week. Take "+HeavyDrink+" to represent the supplies lost by the extra travel time.";
+            AddDrinksToPlayer(Player,Integer.parseInt(HeavyDrink));
         }else if(activeEvent.getName().equals("Entering the Deep")&&PassOrFail.equals("Pass") && Option.equals("option3")) {
             newRes = "Your party are amused at the reference and spurred on enter the deep spirits high! Together you defeat the foul creatures and proceed unobstructed through the Deep!";
         }else if(activeEvent.getName().equals("Entering the Deep")&&PassOrFail.equals("Fail") && Option.equals("option3")) {
             newRes = "Your party is unamused and knocks you unconscious.  Take 2 drinks of healing potion. You awake on the other side of the Deep.  You have no idea how you got there but the dead look in the eyes of your party tell you that you will not have any friends after this quest!";
+            AddShotsToPlayer(Player,2);
         }
 
         else if(activeEvent.getName().equals("Injury")){
             newRes = "Take a drink of Healing potion. You are now feeling better.";
+            AddShotsToPlayer(Player,1);
         }else if(activeEvent.getName().equals("Sickness")){
             newRes = "Take a drink of Healing potion. You are now feeling better.";
+            AddShotsToPlayer(Player,1);
         }else if(activeEvent.getName().equals("Curse of the Platypus!")){
             newRes = "Only a double helping of healing potion can save you!  Drink them now before you are a platypus forever!";
+            AddShotsToPlayer(Player,2);
         }
 
         else if(activeEvent.getName().equals("THPG!")&&PassOrFail.equals("Pass")){
             newRes = "You find the grail and everything is good.  Everyone drinks "+LightDrink+" in celebration!";
+            AddDrinksToAllPlayers(Players, Integer.parseInt(LightDrink));
         }else if(activeEvent.getName().equals("THPG!")&&PassOrFail.equals("Fail")) {
             newRes = "The grail is cursed! Everyone must drink from the healing potion!";
+            AddShotsToAllPlayers(Players, 1);
         }else{
             newRes = "Error 404, no Result found.";
         }
@@ -806,6 +871,39 @@ public class MainGamePresenter implements MainGameInterface.MainPresenterInterfa
         realm.beginTransaction();
         activeEvent.setEventResult(newRes);
         realm.commitTransaction();
+
+    }
+
+    @Override
+    public void AddDrinksToPlayer(PCharacter Player, int DrinksAmount) {
+        realm.beginTransaction();
+        Player.setTotalDrinks(Player.getTotalDrinks()+DrinksAmount);
+        realm.commitTransaction();
+    }
+
+    @Override
+    public void AddDrinksToAllPlayers(PCharacter[] Players, int DrinkAmount) {
+        for (PCharacter PChar : Players) {
+            realm.beginTransaction();
+            PChar.setTotalDrinks(PChar.getTotalDrinks()+DrinkAmount);
+            realm.commitTransaction();
+        }
+    }
+
+    @Override
+    public void AddShotsToPlayer(PCharacter Player, int ShotAmount) {
+        realm.beginTransaction();
+        Player.setTotalShots(Player.getTotalShots()+ShotAmount);
+        realm.commitTransaction();
+    }
+
+    @Override
+    public void AddShotsToAllPlayers(PCharacter[] Players, int ShotAmount) {
+        for (PCharacter PChar : Players) {
+            realm.beginTransaction();
+            PChar.setTotalShots(PChar.getTotalShots()+ShotAmount);
+            realm.commitTransaction();
+        }
     }
 
 

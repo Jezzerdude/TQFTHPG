@@ -18,7 +18,11 @@ public interface MainGameInterface {
         void DeleteEvents();
         Events[] getEvents(int MaxEvents);
         String rollResult(Events activeEvent, String Option, PCharacter[] Players);
-        void OverloadResult(Events activeEvent, String PassOrFail, String Option, String Difficulty);
+        void OverloadResult(Events activeEvent, String PassOrFail, String Option, String Difficulty, PCharacter Player, PCharacter[] Players);
+        void AddDrinksToPlayer(PCharacter Player, int DrinksAmount);
+        void AddDrinksToAllPlayers(PCharacter[] Players, int DrinkAmount);
+        void AddShotsToPlayer(PCharacter Player, int ShotAmount);
+        void AddShotsToAllPlayers(PCharacter[] Players, int DrinkAmount);
     }
 
     interface MainViewInterface{

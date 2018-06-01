@@ -66,6 +66,7 @@ public class MainGameFragment2 extends Fragment implements MainGameInterface.Mai
         String OptionSelected = app_pref.getString("OptionSelected","option1");
         String Difficulty = app_pref.getString("Difficulty", "Null");
         int EventsNeeded = app_pref.getInt("EventsNeeded",0);
+        int Results = app_pref.getInt("Result", 0);
 
         Events[] gameEvents = presenter.getEvents(EventsNeeded);
 
@@ -114,9 +115,10 @@ public class MainGameFragment2 extends Fragment implements MainGameInterface.Mai
 
         PCharacter[] playerList = presenter.getPlayers(PlayerNo);
         String PF = presenter.rollResult(gameEvents[GameState],OptionSelected,playerList);
-        presenter.OverloadResult(gameEvents[GameState],PF,OptionSelected, Difficulty);
         String LeaderForThisEvent = playerList[gameEvents[GameState].getLeadChar()].getFullname();
-
+        if(Results == 1) {
+            presenter.OverloadResult(gameEvents[GameState], PF, OptionSelected, Difficulty, playerList[gameEvents[GameState].getLeadChar()], playerList);
+        }
         if(gameEvents[GameState].getEventType().equals("Multiple")||gameEvents[GameState].getEventType().equals("SingleWithPlayer")) {
             resultText.setText(LeaderForThisEvent + ", " + gameEvents[GameState].getEventResult());
         }else{
