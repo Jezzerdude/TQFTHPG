@@ -485,9 +485,16 @@ public class MainGamePresenter implements MainGameInterface.MainPresenterInterfa
 
         if(activeEvent.getName().equals("Attacked by a Swarm of Beetles")&& Option.equals("option1")){
             String Weakness = Players[activeEvent.getLeadChar()].getWeakness();
+            String PClass = Players[activeEvent.getLeadChar()].getCharclass();
             Modifier-=10;
+            if(PClass.equals("Fighter")||PClass.equals("Thief")){
+                Modifier-=10;
+            }
+            if(PClass.equals("Wizard")||PClass.equals("Cannoneer")){
+                Modifier+=40;
+            }
             if(Weakness.equals("Insects")){
-                Modifier-=40;
+                Modifier-=90;
             }
         }
         if(activeEvent.getName().equals("Attacked by a Swarm of Beetles")&& Option.equals("option2")){
