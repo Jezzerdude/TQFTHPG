@@ -20,7 +20,8 @@
         android:layout_height="wrap_content"
         android:text="Pass or fail: "
         android:layout_below="@id/eventImg"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="5dp"/>
 
     <TextView
         android:id="@+id/passOrFailResult"
@@ -29,14 +30,16 @@
         android:text="maybe"
         android:layout_below="@id/eventImg"
         android:layout_toRightOf="@id/passOrFailText"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="5dp"/>
 
     <TextView
         android:id="@+id/resultText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Results here"
-        android:layout_below="@id/passOrFailText" />
+        android:layout_below="@id/passOrFailText"
+        android:layout_marginLeft="5dp"/>
 
     <Button
         android:id="@+id/continueButton"
@@ -44,7 +47,8 @@
         android:layout_height="wrap_content"
         android:text="Continue!"
         android:layout_below="@id/resultText"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="5dp"/>
 
 
 </RelativeLayout>

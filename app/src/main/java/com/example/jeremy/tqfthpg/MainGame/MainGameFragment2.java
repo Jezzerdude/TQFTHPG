@@ -117,7 +117,7 @@ public class MainGameFragment2 extends Fragment implements MainGameInterface.Mai
         String PF = presenter.rollResult(gameEvents[GameState],OptionSelected,playerList);
         String LeaderForThisEvent = playerList[gameEvents[GameState].getLeadChar()].getFullname();
         if(Results == 1) {
-            presenter.OverloadResult(gameEvents[GameState], PF, OptionSelected, Difficulty, playerList[gameEvents[GameState].getLeadChar()], playerList);
+            presenter.OverloadResult(gameEvents[GameState], PF, OptionSelected, Difficulty, playerList[gameEvents[GameState].getLeadChar()], playerList, PlayerNo);
         }
         if(gameEvents[GameState].getEventType().equals("Multiple")||gameEvents[GameState].getEventType().equals("SingleWithPlayer")) {
             resultText.setText(LeaderForThisEvent + ", " + gameEvents[GameState].getEventResult());

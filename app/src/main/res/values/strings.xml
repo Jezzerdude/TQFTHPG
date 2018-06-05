@@ -7,9 +7,9 @@
     <string name="start">Start game!</string>
     <string name="instructions">Instructions?!?</string>
     <string name="response">*Please remember to drink responsibly.</string>
-    <string name="ins1">Welcome to ...</string>
-    <string name="ins2">... Continued ...</string>
-    <string name="ins3">... And finally ...</string>
+    <string name="ins1">Welcome to TQFTHPG. This is a game that combines Drinking and Roleplaying. First you must select the number of players and the difficulty level.  Its worth noting that the difficulty level will only affect the number of drinks and not the number of shots a players has to do.  Next you  will be prompted to enter names for your characters. After that the game can begin!</string>
+    <string name="ins2">When you get to the character screen its important to remember the details about your character.  In the events you will be prompted to pick an option.  Try to think about what your character would be particularly good or bad at before making your decision as it may lead to higher odds of success.</string>
+    <string name="ins3">When an event is resolved it will tell you the appropriate actions that must be taken.  There are two types of drink in the game: standard drinks are supposed to be from an alcoholic beverage of the players choosing whilst drinks of \"healing potion\" are shots.  These can be substituted for additional drinks instead if allowed by the rest of the group playing.</string>
     <string name="Names">Character Names!</string>
     <string name="p1">Player 1: </string>
     <string name="p2">Player 2: </string>

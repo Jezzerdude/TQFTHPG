@@ -19,7 +19,8 @@
         android:layout_height="wrap_content"
         android:text="@string/hello_blank_fragment"
         android:layout_below="@id/eventImg"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="5dp"/>
 
     <TextView
         android:id="@+id/op1"
@@ -27,7 +28,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/desc"
         android:text="Placeholder 1"
-        android:layout_marginBottom="50dp"/>
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="5dp"/>
 
     <TextView
         android:id="@+id/op2"
@@ -35,7 +37,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/op1"
         android:text="Placeholder 2"
-        android:layout_marginBottom="50dp"/>
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="5dp"/>
 
     <TextView
         android:id="@+id/op3"
@@ -43,7 +46,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/op2"
         android:text="Placeholder 3"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="5dp"/>
 
     <Button
         android:id="@+id/button1"
@@ -51,7 +55,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/desc"
         android:layout_toRightOf="@id/op1"
-        android:text="Option 1"/>
+        android:text="Option 1"
+        android:layout_marginLeft="5dp"/>
 
     <Button
         android:id="@+id/button2"
@@ -59,7 +64,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/op1"
         android:layout_toRightOf="@id/op2"
-        android:text="Option 2"/>
+        android:text="Option 2"
+        android:layout_marginLeft="5dp"/>
 
     <Button
         android:id="@+id/button3"
@@ -67,6 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/op2"
         android:layout_toRightOf="@id/op3"
-        android:text="Option 3"/>
+        android:text="Option 3"
+        android:layout_marginLeft="5dp"/>
 
 </RelativeLayout>

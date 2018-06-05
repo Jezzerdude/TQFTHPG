@@ -11,20 +11,16 @@ import io.realm.RealmResults;
 
 public class MainGamePresenter implements MainGameInterface.MainPresenterInterface{
 
-    private MainGameFragment mainGameFrag;
-    private MainGameFragment2 mainGameFrag2;
-    Realm realm;
+    private Realm realm;
 
     @Override
     public MainGameFragment getFragment() {
-        mainGameFrag = new MainGameFragment();
-        return mainGameFrag;
+        return new MainGameFragment();
     }
 
     @Override
     public MainGameFragment2 getFragment2() {
-        mainGameFrag2 = new MainGameFragment2();
-        return mainGameFrag2;
+        return new MainGameFragment2();
     }
 
     @Override
@@ -578,12 +574,13 @@ public class MainGamePresenter implements MainGameInterface.MainPresenterInterfa
     }
 
     @Override
-    public void OverloadResult(Events activeEvent, String PassOrFail, String Option, String Difficulty,PCharacter Player, PCharacter[] Players) {
+    public void OverloadResult(Events activeEvent, String PassOrFail, String Option, String Difficulty,PCharacter Player, PCharacter[] Players, int PlayerNo) {
         String newRes;
         String SingleDrink;
         String LightDrink;
         String MedDrink;
         String HeavyDrink;
+        PCharacter[] Others = findPlayerThatIsNotActive(Player, PlayerNo,2);
 
         if(Difficulty.equals("Sober")){
             SingleDrink = Integer.toString(1);
@@ -670,15 +667,17 @@ public class MainGamePresenter implements MainGameInterface.MainPresenterInterfa
         else if(activeEvent.getName().equals("Cliff walk")&&PassOrFail.equals("Pass") && Option.equals("option1")) {
             newRes = "You manage to scuttle around the edge of the cliff, no drinks for you!";
         }else if(activeEvent.getName().equals("Cliff walk")&&PassOrFail.equals("Fail") && Option.equals("option1")) {
-            newRes = "You fall off the cliff, your companion grabs you but you both fall together.  You and the player to your left drinks "+MedDrink+".";
+            newRes = "You fall off the cliff, your companion grabs you but you both fall together.  You and "+Others[0].getFullname()+" drink "+MedDrink+".";
             AddDrinksToPlayer(Player,Integer.parseInt(MedDrink));
+            AddDrinksToPlayer(Others[0],Integer.parseInt(MedDrink));
         }else if(activeEvent.getName().equals("Cliff walk")&&PassOrFail.equals("Pass") && Option.equals("option2")) {
             newRes = "You tunnel through the cliff and arrive at your destination.  Well done!";
         }else if(activeEvent.getName().equals("Cliff walk")&&PassOrFail.equals("Fail") && Option.equals("option2")) {
             newRes = "You fail to tunnel into the rock. Your unimpressed party give you distasteful looks.  Drink "+MedDrink+".";
             AddDrinksToPlayer(Player,Integer.parseInt(MedDrink));
         }else if(activeEvent.getName().equals("Cliff walk")&&PassOrFail.equals("Pass") && Option.equals("option3")) {
-            newRes = "You find an alternate route!  One of your party is unimpressed however.  The player to the right of you drinks "+LightDrink+".";
+            newRes = "You find an alternate route!  One of your party is unimpressed however.  "+Others[0].getFullname()+" drinks "+LightDrink+".";
+            AddDrinksToPlayer(Others[0],Integer.parseInt(LightDrink));
         }else if(activeEvent.getName().equals("Cliff walk")&&PassOrFail.equals("Fail") && Option.equals("option3")) {
             newRes = "You fail to find an alternate route.  Drink "+MedDrink+".";
             AddDrinksToPlayer(Player,Integer.parseInt(MedDrink));
@@ -762,8 +761,10 @@ public class MainGamePresenter implements MainGameInterface.MainPresenterInterfa
             newRes = "You are defeated by the bandits.  As they are taking your equipment you are saved by Sir Chaworth-Musters! He insists you take a drink of healing potion for your wounds before leaving you and continuing his journey.  What a guy!";
             AddShotsToPlayer(Player,1);
         }else if(activeEvent.getName().equals("Bandit attack")&&PassOrFail.equals("Pass") && Option.equals("option2")) {
-            newRes = "You offer the bandits a trade and they accept, somehow you actually come out on top having gained a large amount of alcohol.  You and two fellow party members of your choice drink "+MedDrink+" in celebration of the plentiful booze!";
+            newRes = "You offer the bandits a trade and they accept, somehow you actually come out on top having gained a large amount of alcohol.  You, "+Others[0].getFullname()+" and "+Others[1].getFullname()+" drink "+MedDrink+" in celebration of the plentiful booze!";
             AddDrinksToPlayer(Player,Integer.parseInt(MedDrink));
+            AddDrinksToPlayer(Others[0],Integer.parseInt(MedDrink));
+            AddDrinksToPlayer(Others[1],Integer.parseInt(MedDrink));
         }else if(activeEvent.getName().equals("Bandit attack")&&PassOrFail.equals("Fail") && Option.equals("option2")) {
             newRes = "There is no negotiation to be had. The bandits attack you and you injure yourself fighting them off. Take a drink of healing potion to recover.";
             AddShotsToPlayer(Player,1);
@@ -835,10 +836,10 @@ public class MainGamePresenter implements MainGameInterface.MainPresenterInterfa
             AddDrinksToAllPlayers(Players,Integer.parseInt(MedDrink));
             AddDrinksToPlayer(Player,Integer.parseInt(MedDrink)*-1);
         }else if(activeEvent.getName().equals("Entering the Deep")&&PassOrFail.equals("Pass") && Option.equals("option2")) {
-            newRes = "You decide to find a safer route.  It will be longer but safer! Take "+MedDrink+" to represent the supplies lost by the extra travel time.";
+            newRes = "You decide to find a safer route.  It will be longer but safer! Take "+MedDrink+" drinks to represent the supplies lost by the extra travel time.";
             AddDrinksToPlayer(Player,Integer.parseInt(MedDrink));
         }else if(activeEvent.getName().equals("Entering the Deep")&&PassOrFail.equals("Fail") && Option.equals("option2")) {
-            newRes = "Your search for a safer route takes an extra week. Take "+HeavyDrink+" to represent the supplies lost by the extra travel time.";
+            newRes = "Your search for a safer route takes an extra week. Take "+HeavyDrink+" drinks to represent the supplies lost by the extra travel time.";
             AddDrinksToPlayer(Player,Integer.parseInt(HeavyDrink));
         }else if(activeEvent.getName().equals("Entering the Deep")&&PassOrFail.equals("Pass") && Option.equals("option3")) {
             newRes = "Your party are amused at the reference and spurred on enter the deep spirits high! Together you defeat the foul creatures and proceed unobstructed through the Deep!";
@@ -904,6 +905,26 @@ public class MainGamePresenter implements MainGameInterface.MainPresenterInterfa
             PChar.setTotalShots(PChar.getTotalShots()+ShotAmount);
             realm.commitTransaction();
         }
+    }
+
+    @Override
+    public PCharacter[] findPlayerThatIsNotActive(PCharacter Player, int PlayerNo, int NoOfCharsReturned) {
+        PCharacter[] Chars = getPlayers(PlayerNo);
+        PCharacter[] ReturnedChars = new PCharacter[NoOfCharsReturned];
+        PCharacter UsedChar = new PCharacter();
+
+
+        for(int i = 0; i<NoOfCharsReturned; i++) {
+            int rand = (int) (Math.random() * PlayerNo);
+            if (!(Chars[rand].equals(Player)) && Chars[rand]!=UsedChar) {
+                ReturnedChars[i] = Chars[rand];
+                UsedChar = Chars[rand];
+            }else{
+                i--;
+            }
+        }
+
+        return ReturnedChars;
     }
 
 
