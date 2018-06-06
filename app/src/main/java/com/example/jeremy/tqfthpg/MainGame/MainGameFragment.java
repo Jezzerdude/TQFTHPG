@@ -137,10 +137,13 @@ public class MainGameFragment extends Fragment implements MainGameInterface.Main
         op2.setText(gameEvents[GameState].getAct2());
         op3.setText(gameEvents[GameState].getAct3());
         if(op2.getText().equals("")){
+            button1.setText("Continue!");
             op2.setVisibility(View.GONE);
             op3.setVisibility(View.GONE);
             button2.setVisibility(View.GONE);
             button3.setVisibility(View.GONE);
+        }else{
+            button1.setText("Option 1");
         }
 
         return view;
